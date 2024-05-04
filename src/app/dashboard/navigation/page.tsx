@@ -10,7 +10,7 @@ type Inputs = {
   link: string;
 };
 
-const page = () => {
+const Page = () => {
   const {
     register,
     handleSubmit,
@@ -69,4 +69,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
