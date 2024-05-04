@@ -17,7 +17,7 @@ interface ProductsProps {
   image: string;
   price: string;
 }
-const page = () => {
+const Page = () => {
   const [products, setProducts] = useState<ProductsProps[]>([]);
   useEffect(() => {
     fetch("/fake/case.json")
@@ -79,4 +79,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
