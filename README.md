@@ -20,6 +20,7 @@ bun dev
 * react hook form and zod
 * npm install @mui/material @emotion/react @emotion/styled
 * react-hot-toast
+* npm install @reduxjs/toolkit react-redux
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

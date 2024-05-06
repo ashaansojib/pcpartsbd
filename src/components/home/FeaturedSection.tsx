@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useGetProductsQuery } from "@/redux/features/products/productApi";
 
 interface CategoryProps {
   id: string;
@@ -15,13 +16,13 @@ interface CategoryProps {
 
 const FeaturedSection: React.FC = () => {
   const [categories, setCategories] = useState<CategoryProps[]>([]);
-
+  const { data: product } = useGetProductsQuery([]);
   useEffect(() => {
     fetch("/fake/category.json")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
-
+  console.log(product);
   return (
     <div className="bg-secondary px-2 py-4">
       <SectionTitle
@@ -33,7 +34,7 @@ const FeaturedSection: React.FC = () => {
           className="mySwiper"
           spaceBetween={10}
           slidesPerView={6}
-          autoplay={{delay: 3000, pauseOnMouseEnter: true}}
+          autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
           navigation={true}
           breakpoints={{
             320: {
