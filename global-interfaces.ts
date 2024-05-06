@@ -10,3 +10,8 @@ export interface Product {
   model: string;
   status: string;
 }
+export interface Menu {
+  _id: string;
+  title: string;
+  link: string;
+}
