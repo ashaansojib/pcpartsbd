@@ -1,5 +1,4 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { DashboardTitle } from "./shared/DashboardTitle";
 import {
   Table,
@@ -11,60 +10,62 @@ import {
 import { FaEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import toast, { Toaster } from "react-hot-toast";
-interface ProductsProps {
-  id: string;
-  name: string;
-  image: string;
-  price: string;
-}
-const Page = () => {
-  const [products, setProducts] = useState<ProductsProps[]>([]);
-  useEffect(() => {
-    fetch("/fake/case.json")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+import { useGetProductsQuery } from "@/redux/features/products/productApi";
+import { Product } from "../../../global-interfaces";
+import React from "react";
+import { DataLoader } from "@/components/shared/Loader";
+
+const Dashboard: React.FC = () => {
+  const { data: products, isLoading } = useGetProductsQuery([]);
   // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
   // hadler of toast
   const handleToaster = () => {
     toast.error("This is Admin actions!");
   };
+  console.log(products?.data);
   return (
     <>
       <Toaster position="top-right" />
       <DashboardTitle title="All Products Manage Here!" />
       <div>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              <TableCell>SL</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>Category</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {products.map((product, i) => (
-              <TableRow key={product.id}>
-                <TableCell>{i + 1}</TableCell>
-                <TableCell>{product.name}</TableCell>
-                <TableCell>{product.price}</TableCell>
-                <TableCell>PC Case</TableCell>
-                <TableCell className="flex gap-2 items-center">
-                  <FaEdit
-                    onClick={handleToaster}
-                    className="text-xl cursor-pointer"
-                  />
-                  <FaDeleteLeft
-                    onClick={handleToaster}
-                    className="text-xl cursor-pointer"
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <div>
+          {isLoading ? (
+            <DataLoader />
+          ) : (
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>SL</TableCell>
+                  <TableCell>Title</TableCell>
+                  <TableCell>Price</TableCell>
+                  <TableCell>Category</TableCell>
+                  <TableCell>Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {products.data?.map((product: Product, i: number) => (
+                  <TableRow key={product._id}>
+                    <TableCell>{i + 1}</TableCell>
+                    <TableCell>{product.title}</TableCell>
+                    <TableCell>{product.price}</TableCell>
+                    <TableCell>PC Case</TableCell>
+                    <TableCell className="flex gap-2 items-center">
+                      <FaEdit
+                        onClick={handleToaster}
+                        className="text-xl cursor-pointer"
+                      />
+                      <FaDeleteLeft
+                        onClick={handleToaster}
+                        className="text-xl cursor-pointer"
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </div>
+
         {/* <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
@@ -79,4 +80,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Dashboard;

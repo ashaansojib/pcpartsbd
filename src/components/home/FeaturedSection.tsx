@@ -16,13 +16,12 @@ interface CategoryProps {
 
 const FeaturedSection: React.FC = () => {
   const [categories, setCategories] = useState<CategoryProps[]>([]);
-  const { data: product } = useGetProductsQuery([]);
+  
   useEffect(() => {
     fetch("/fake/category.json")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
-  console.log(product);
   return (
     <div className="bg-secondary px-2 py-4">
       <SectionTitle
