@@ -30,6 +30,9 @@ export const productApi = createApi({
         url: `/products?category=casing`,
       }),
     }),
+    getChairByCategory: builder.query({
+      query: () => "/products?category=chair",
+    }),
   }),
 });
 
@@ -38,4 +41,5 @@ export const {
   useAddProductMutation,
   useRemoveProductMutation,
   useGetCaseByCategoryQuery,
+  useGetChairByCategoryQuery,
 } = productApi;

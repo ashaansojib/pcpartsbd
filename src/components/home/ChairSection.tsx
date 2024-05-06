@@ -6,22 +6,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-
-interface GammingChair {
-  id: string;
-  name: string;
-  image: string;
-  price: string;
-}
+import { useGetChairByCategoryQuery } from "@/redux/features/products/productApi";
+import { Product } from "../../../global-interfaces";
+import { DataLoader } from "../shared/Loader";
 
 const ChairSection: React.FC = () => {
-  const [allChair, setAllChair] = useState<GammingChair[]>([]);
-
-  useEffect(() => {
-    fetch("/fake/chair.json")
-      .then((res) => res.json())
-      .then((data) => setAllChair(data));
-  }, []);
+  const { data: chairs, isLoading } = useGetChairByCategoryQuery([]);
 
   return (
     <div className="py-4">
@@ -55,15 +45,15 @@ const ChairSection: React.FC = () => {
           }}
           modules={[Navigation]}
         >
-          {allChair.map((chair) => (
-            <SwiperSlide key={chair.id}>
-              <CaseCard
-                name={chair.name}
-                image={chair.image}
-                price={chair.price}
-              />
-            </SwiperSlide>
-          ))}
+          {isLoading ? (
+            <DataLoader />
+          ) : (
+            chairs.data?.map((chair: Product) => (
+              <SwiperSlide key={chair._id}>
+                <CaseCard product={chair} />
+              </SwiperSlide>
+            ))
+          )}
         </Swiper>
       </div>
     </div>
