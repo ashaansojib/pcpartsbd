@@ -5,11 +5,31 @@ export const productApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://pcpartsbd-server.vercel.app/api",
   }),
+  tagTypes: ["product"],
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => "/products",
     }),
+    addProduct: builder.mutation({
+      query: (data) => ({
+        url: "/products",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["product"],
+    }),
+    removeProduct: builder.mutation({
+      query: (id) => ({
+        url: `/products/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["product"],
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = productApi;
+export const {
+  useGetProductsQuery,
+  useAddProductMutation,
+  useRemoveProductMutation,
+} = productApi;

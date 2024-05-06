@@ -10,19 +10,28 @@ import {
 import { FaEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import toast, { Toaster } from "react-hot-toast";
-import { useGetProductsQuery } from "@/redux/features/products/productApi";
+import {
+  useGetProductsQuery,
+  useRemoveProductMutation,
+} from "@/redux/features/products/productApi";
 import { Product } from "../../../global-interfaces";
 import React from "react";
 import { DataLoader } from "@/components/shared/Loader";
 
 const Dashboard: React.FC = () => {
   const { data: products, isLoading } = useGetProductsQuery([]);
+  const [removeProduct] = useRemoveProductMutation();
   // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
   // hadler of toast
   const handleToaster = () => {
+    // todo: validate user to handle delete
     toast.error("This is Admin actions!");
   };
-  console.log(products?.data);
+  const handleRemove = (id: string) => {
+    removeProduct(id);
+    // todo: validate user to handle delete
+    toast.error("This is Admin actions!");
+  };
   return (
     <>
       <Toaster position="top-right" />
@@ -55,7 +64,7 @@ const Dashboard: React.FC = () => {
                         className="text-xl cursor-pointer"
                       />
                       <FaDeleteLeft
-                        onClick={handleToaster}
+                        onClick={() => handleRemove(product._id)}
                         className="text-xl cursor-pointer"
                       />
                     </TableCell>

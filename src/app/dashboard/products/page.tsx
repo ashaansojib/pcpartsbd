@@ -2,6 +2,7 @@
 import React from "react";
 import { DashboardTitle } from "../shared/DashboardTitle";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAddProductMutation } from "@/redux/features/products/productApi";
 
 type CreateProducts = {
   title: string;
@@ -11,8 +12,11 @@ type CreateProducts = {
   price: string;
   discount: string;
   image: string;
+  model: string;
+  status: string;
 };
-const Page = () => {
+const AddProduct = () => {
+  const [addProduct, { isLoading }] = useAddProductMutation();
   const {
     register,
     handleSubmit,
@@ -21,18 +25,19 @@ const Page = () => {
     formState: { errors },
   } = useForm<CreateProducts>();
   const onSubmit: SubmitHandler<CreateProducts> = (data) => {
-    
-    const formatedDate = {
+    const formatedData = {
       title: data.title,
-      price: parseFloat(data.price),
-      category: data.category,
-      brand: data.brand,
+      description: data.info,
+      keyFeature: ["price", "fixed"],
       image: data.image,
-      info: data.info,
+      category: data.category.toLowerCase(),
+      brand: data.brand.toLowerCase(),
+      model: data.model,
+      status: data.status,
+      price: parseFloat(data.price),
       discount: parseFloat(data.discount),
-      createdAt: new Date(),
-    }
-    console.log(formatedDate);
+    };
+    addProduct(formatedData);
     reset();
   };
 
@@ -53,10 +58,16 @@ const Page = () => {
             <div className="bg-slate-100 p-2 space-y-2">
               <input placeholder="Category" {...register("category")} />
               <input placeholder="Brand" {...register("brand")} />
-              <input placeholder="Image Link" {...register("image")} />
               <input placeholder="Price" {...register("price")} />
+              <input placeholder="Status" {...register("status")} />
+              <input placeholder="Image Link" {...register("image")} />
+              <input placeholder="Model" {...register("model")} />
               <input placeholder="Discount" {...register("discount")} />
-              <input type="submit" className="submit-btn" />
+              <input
+                type="submit"
+                value={`${isLoading ? "Loading..." : "Go Publish"}`}
+                className="submit-btn"
+              />
             </div>
           </div>
         </form>
@@ -65,4 +76,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default AddProduct;
