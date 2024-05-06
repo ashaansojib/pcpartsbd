@@ -25,6 +25,11 @@ export const productApi = createApi({
       }),
       invalidatesTags: ["product"],
     }),
+    getCaseByCategory: builder.query({
+      query: () => ({
+        url: `/products?category=casing`,
+      }),
+    }),
   }),
 });
 
@@ -32,4 +37,5 @@ export const {
   useGetProductsQuery,
   useAddProductMutation,
   useRemoveProductMutation,
+  useGetCaseByCategoryQuery,
 } = productApi;

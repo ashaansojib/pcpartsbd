@@ -1,21 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Casing } from "../../../global-interfaces";
 
-interface CaseCardProps {
-  name: string;
-  image: string;
-  price: string;
-}
-
-const CaseCard: React.FC<CaseCardProps> = ({ name, image, price }) => {
+const CaseCard: React.FC<Casing> = ({ title, image, price, discount }) => {
   return (
     <div className="case-card-container">
       <div className="relative">
-        <Image layout="responsive" src={image} alt={name} width={250} height={100} />
-        <h2 className="text-sm font-medium text-primary pb-2">{name}</h2>
+        <Image
+          layout="responsive"
+          src={image}
+          alt={title}
+          width={250}
+          height={100}
+        />
+        <h2 className="text-sm font-medium text-primary pb-2">{title}</h2>
         <span className="text-red-500 absolute left-0 top-0 font-semibold">
-          15%
+        {discount !== 0 ? `${discount}% OFF` : null}
         </span>
       </div>
       <div className="w-full">

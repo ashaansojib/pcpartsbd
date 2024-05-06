@@ -15,3 +15,15 @@ export interface Menu {
   title: string;
   link: string;
 }
+export interface Casing {
+  _id: string;
+  title: string;
+  image: string;
+  price: string;
+  description: string;
+  category: string;
+  model: string;
+  status: string;
+  discount: Number;
+  filename: string;
+}

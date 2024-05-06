@@ -56,12 +56,30 @@ const AddProduct = () => {
               ></textarea>
             </div>
             <div className="bg-slate-100 p-2 space-y-2">
-              <input placeholder="Category" {...register("category")} />
-              <input placeholder="Brand" {...register("brand")} />
-              <input placeholder="Price" {...register("price")} />
-              <input placeholder="Status" {...register("status")} />
-              <input placeholder="Image Link" {...register("image")} />
-              <input placeholder="Model" {...register("model")} />
+              <input
+                placeholder="Category"
+                {...register("category", { required: true })}
+              />
+              <input
+                placeholder="Brand"
+                {...register("brand", { required: true })}
+              />
+              <input
+                placeholder="Price"
+                {...register("price", { required: true })}
+              />
+              <input
+                placeholder="Status"
+                {...register("status", { required: true })}
+              />
+              <input
+                placeholder="Image Link"
+                {...register("image", { required: true })}
+              />
+              <input
+                placeholder="Model"
+                {...register("model", { required: true })}
+              />
               <input placeholder="Discount" {...register("discount")} />
               <input
                 type="submit"
