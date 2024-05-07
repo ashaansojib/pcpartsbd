@@ -1,6 +1,6 @@
 import React from 'react';
 
-const page = () => {
+const CategoryDetails = () => {
     return (
         <div>
             here we show category all items
@@ -8,4 +8,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default CategoryDetails;

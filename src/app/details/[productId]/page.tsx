@@ -4,7 +4,7 @@ import { useGetProductQuery } from "@/redux/features/products/productApi";
 import Image from "next/image";
 import React from "react";
 
-const page = ({ params }: { params: { productId: string } }) => {
+const ProductDetails = ({ params }: { params: { productId: string } }) => {
   const {
     data: singleItem,
     isLoading,
@@ -61,4 +61,4 @@ const page = ({ params }: { params: { productId: string } }) => {
   );
 };
 
-export default page;
+export default ProductDetails;
