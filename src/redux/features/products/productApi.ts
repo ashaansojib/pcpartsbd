@@ -36,6 +36,9 @@ export const productApi = createApi({
     getNewArrivalProduct: builder.query({
       query: () => "/products?category=new-arrival",
     }),
+    getPopularProduct: builder.query({
+      query: () => "/products?category=popular",
+    }),
   }),
 });
 
@@ -46,4 +49,5 @@ export const {
   useGetCaseByCategoryQuery,
   useGetChairByCategoryQuery,
   useGetNewArrivalProductQuery,
+  useGetPopularProductQuery,
 } = productApi;

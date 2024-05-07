@@ -6,20 +6,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import { useGetPopularProductQuery } from "@/redux/features/products/productApi";
+import { Product } from "../../../global-interfaces";
+import { DataLoader } from "../shared/Loader";
 
-interface PopularItemProps {
-  id: string;
-  name: string;
-  image: string;
-  price: string;
-}
 const PopularSection: React.FC = () => {
-  const [popularItem, setPopularItem] = useState<PopularItemProps[]>([]);
-  useEffect(() => {
-    fetch("/fake/popular.json")
-      .then((res) => res.json())
-      .then((data) => setPopularItem(data));
-  }, []);
+  const { data: popular, isLoading } = useGetPopularProductQuery([]);
+
   return (
     <>
       <SectionTitle
@@ -56,11 +49,15 @@ const PopularSection: React.FC = () => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {popularItem.map((item) => (
-            <SwiperSlide key={item.id}>
-              {/* <FeaturedCard key={item.id} product={item} /> */}
-            </SwiperSlide>
-          ))}
+          {isLoading ? (
+            <DataLoader />
+          ) : (
+            popular?.data.map((item: Product) => (
+              <SwiperSlide key={item._id}>
+                <FeaturedCard product={item} />
+              </SwiperSlide>
+            ))
+          )}
         </Swiper>
       </div>
     </>
