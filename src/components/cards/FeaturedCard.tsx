@@ -4,18 +4,20 @@ import React from "react";
 import { Product } from "../../../global-interfaces";
 
 const FeaturedCard: React.FC<{ product: Product }> = ({ product }) => {
-  const { title, image, price, discount } = product;
+  const { title, image, price, discount, _id } = product;
   return (
     <div className="featured-card-container">
       <div className="relative">
-        <Image
-          layout="responsive"
-          src={image}
-          alt={title}
-          width={250}
-          height={80}
-        />
-        <h2 className="text-sm font-medium text-primary pb-2">{title}</h2>
+        <Link href={`/details/${_id}`}>
+          <Image
+            layout="responsive"
+            src={image}
+            alt={title}
+            width={250}
+            height={80}
+          />
+          <h2 className="text-sm font-medium text-primary pb-2">{title}</h2>
+        </Link>
         <span className="text-red-500 absolute px-1 left-0 top-0 font-semibold bg-secondary">
           {discount ? `${discount + "%"}` : ""}
         </span>

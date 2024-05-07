@@ -10,6 +10,9 @@ export const productApi = createApi({
     getProducts: builder.query({
       query: ({ page, limit }) => `/products?page=${page}&limit=${limit}`,
     }),
+    getProduct: builder.query({
+      query: (id) => `/products/${id}`,
+    }),
     addProduct: builder.mutation({
       query: (data) => ({
         url: "/products",
@@ -44,6 +47,7 @@ export const productApi = createApi({
 
 export const {
   useGetProductsQuery,
+  useGetProductQuery,
   useAddProductMutation,
   useRemoveProductMutation,
   useGetCaseByCategoryQuery,

@@ -3,6 +3,7 @@ import TopHeader from "./TopHeader";
 import NavBar from "./NavBar";
 import { FaBlackTie, FaSearch, FaTrash } from "react-icons/fa";
 import { FaBookBookmark, FaDesktop, FaHandshakeSimple } from "react-icons/fa6";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -11,9 +12,11 @@ const Header = () => {
       {/* main header area */}
       <div className="header-container">
         {/* logo area */}
-        <h3 className="text-3xl font-bold w-[150px]">
-          PCParts<span className="text-accent">BD</span>
-        </h3>
+        <Link href="/">
+          <h3 className="text-3xl font-bold w-[150px]">
+            PCParts<span className="text-accent">BD</span>
+          </h3>
+        </Link>
         {/* search bar */}
         <div className="relative md:col-span-2">
           <input

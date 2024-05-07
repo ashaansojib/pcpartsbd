@@ -1,5 +1,3 @@
-import Header from "@/components/shared/Header";
-import Footer from "@/components/shared/Footer";
 import RevengerSection from "@/components/home/RevengerSection";
 import ChairSection from "@/components/home/ChairSection";
 import PopularSection from "@/components/home/PopularSection";
@@ -11,7 +9,6 @@ import HeroSection from "@/components/home/HeroSection";
 export default function Home() {
   return (
     <main>
-      <Header />
       <HeroSection />
       <CustomerDeals />
       <FeaturedSection />
@@ -20,7 +17,6 @@ export default function Home() {
       <PopularSection />
       <ChairSection />
       <RevengerSection />
-      <Footer />
     </main>
   );
 }
