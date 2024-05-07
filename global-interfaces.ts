@@ -9,6 +9,7 @@ export interface Product {
   image: string;
   model: string;
   status: string;
+  fileName: string;
 }
 export interface Menu {
   _id: string;

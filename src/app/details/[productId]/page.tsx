@@ -14,6 +14,7 @@ const page = ({ params }: { params: { productId: string } }) => {
   if (isLoading || isFetching) {
     return <DataLoader />;
   }
+
   const {
     title,
     image,
@@ -51,8 +52,8 @@ const page = ({ params }: { params: { productId: string } }) => {
             <span className="text-accent line-through">{discount}% Off</span>
           </h2>
           <div className="flex gap-2">
-            <button className="submit-btn">Add To Cart</button>
-            <button className="submit-btn">Buy Now</button>
+            <button className="add-to-card-btn">Add To Cart</button>
+            <button className="add-to-card-btn">Buy Now</button>
           </div>
         </div>
       </div>
