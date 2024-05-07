@@ -1,10 +1,11 @@
 "use client";
-import { DashboardTitle } from "./shared/DashboardTitle";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
+  TablePagination,
   TableRow,
 } from "@mui/material";
 import { FaEdit } from "react-icons/fa";
@@ -15,27 +16,33 @@ import {
   useRemoveProductMutation,
 } from "@/redux/features/products/productApi";
 import { Product } from "../../../global-interfaces";
-import React from "react";
 import { DataLoader } from "@/components/shared/Loader";
 
 const Dashboard: React.FC = () => {
-  const { data: products, isLoading } = useGetProductsQuery([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const {
+    data: products,
+    isLoading,
+    refetch,
+  } = useGetProductsQuery({
+    page: page + 1,
+    limit: rowsPerPage,
+  });
   const [removeProduct] = useRemoveProductMutation();
-  // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-  // hadler of toast
-  const handleToaster = () => {
-    // todo: validate user to handle delete
-    toast.error("This is Admin actions!");
-  };
+
+  useEffect(() => {
+    refetch();
+  }, [page, rowsPerPage, refetch]);
+
   const handleRemove = (id: string) => {
     removeProduct(id);
-    // todo: validate user to handle delete
-    toast.error("This is Admin actions!");
+    toast.error("This is Admin action!");
+    refetch();
   };
   return (
     <>
       <Toaster position="top-right" />
-      <DashboardTitle title="All Products Manage Here!" />
       <div>
         <div>
           {isLoading ? (
@@ -48,19 +55,21 @@ const Dashboard: React.FC = () => {
                   <TableCell>Title</TableCell>
                   <TableCell>Price</TableCell>
                   <TableCell>Category</TableCell>
+                  <TableCell>Brand</TableCell>
                   <TableCell>Actions</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {products.data?.map((product: Product, i: number) => (
+                {products?.data.map((product: Product, index: number) => (
                   <TableRow key={product._id}>
-                    <TableCell>{i + 1}</TableCell>
+                    <TableCell>{index + 1}</TableCell>
                     <TableCell>{product.title}</TableCell>
                     <TableCell>{product.price}</TableCell>
-                    <TableCell>PC Case</TableCell>
-                    <TableCell className="flex gap-2 items-center">
+                    <TableCell>{product.category}</TableCell>
+                    <TableCell>{product.brand}</TableCell>
+                    <TableCell>
                       <FaEdit
-                        onClick={handleToaster}
+                        onClick={() => toast.error("This is Admin action!")}
                         className="text-xl cursor-pointer"
                       />
                       <FaDeleteLeft
@@ -74,16 +83,17 @@ const Dashboard: React.FC = () => {
             </Table>
           )}
         </div>
-
-        {/* <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      /> */}
+        <TablePagination
+          component="div"
+          count={products?.count || 0}
+          onPageChange={(e, newPage) => setPage(newPage)}
+          onRowsPerPageChange={(event) =>
+            setRowsPerPage(parseInt(event.target.value))
+          }
+          page={page}
+          rowsPerPage={rowsPerPage}
+          rowsPerPageOptions={[5, 10, 25, 35, 45, 55]}
+        />
       </div>
     </>
   );

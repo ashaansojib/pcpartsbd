@@ -19,7 +19,7 @@ type Inputs = {
 };
 
 const Page = () => {
-  const { data: menus, isLoading: dataGetting } = useGetMenusQuery([]);
+  const { data: menus, isLoading: dataGetting, refetch } = useGetMenusQuery([]);
   const [createMenu, { isLoading }] = useAddMenuMutation();
   const [removeItem] = useRemoveMenuMutation();
   const {
@@ -40,6 +40,7 @@ const Page = () => {
   const handleRemove = (id: string) => {
     removeItem(id);
     toast.error("This is Admin actions!");
+    refetch();
   };
   return (
     <>
@@ -62,9 +63,9 @@ const Page = () => {
                 />
               </div>
               {/* errors will return when field validation fails  */}
-              {errors.link &&(
-                  <span className="error-btn">This field is required</span>
-                )}
+              {errors.link && (
+                <span className="error-btn">This field is required</span>
+              )}
               <input
                 type="submit"
                 value={`${isLoading ? "Loading..." : "Add Menu"}`}
