@@ -1,25 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-interface FeaturedCardProps {
-  name: string;
-  image: string;
-  price: string;
-}
-const FeaturedCard: React.FC<FeaturedCardProps> = ({ name, image, price }) => {
+import { Product } from "../../../global-interfaces";
+
+const FeaturedCard: React.FC<{ product: Product }> = ({ product }) => {
+  const { title, image, price, discount } = product;
   return (
     <div className="featured-card-container">
       <div className="relative">
         <Image
           layout="responsive"
           src={image}
-          alt={name}
+          alt={title}
           width={250}
           height={80}
         />
-        <h2 className="text-sm font-medium text-primary pb-2">{name}</h2>
-        <span className="text-red-500 absolute left-0 top-0 font-semibold">
-          15%
+        <h2 className="text-sm font-medium text-primary pb-2">{title}</h2>
+        <span className="text-red-500 absolute px-1 left-0 top-0 font-semibold bg-secondary">
+          {discount ? `${discount + "%"}` : ""}
         </span>
       </div>
       <div className="w-full">

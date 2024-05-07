@@ -16,8 +16,8 @@ const CaseCard: React.FC<{ product: Product }> = ({ product }) => {
           height={100}
         />
         <h2 className="text-sm font-medium text-primary pb-2">{title}</h2>
-        <span className="text-red-500 absolute left-0 top-0 font-semibold">
-          {discount !== 0 ? `${discount}% OFF` : null}
+        <span className="text-red-500 absolute px-1 left-0 top-0 font-semibold bg-secondary">
+          {discount ? `${discount + "%"}` : ""}
         </span>
       </div>
       <div className="w-full">

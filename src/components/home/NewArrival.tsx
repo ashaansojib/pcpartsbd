@@ -1,25 +1,22 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SectionTitle } from "../shared/SectionTitle";
 import FeaturedCard from "../cards/FeaturedCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useGetNewArrivalProductQuery } from "@/redux/features/products/productApi";
+import { Product } from "../../../global-interfaces";
+import { DataLoader } from "../shared/Loader";
 
-interface Arrival {
-  id: string;
-  name: string;
-  image: string;
-  price: string;
-}
 const NewArrival: React.FC = () => {
-  const [allArrival, setAllArrival] = useState<Arrival[]>([]);
-  useEffect(() => {
-    fetch("/fake/arrival.json")
-      .then((res) => res.json())
-      .then((data) => setAllArrival(data));
-  }, []);
+  const {
+    data: allArrival,
+    isLoading,
+    refetch,
+  } = useGetNewArrivalProductQuery([]);
+
   return (
     <div className="py-4">
       <SectionTitle
@@ -54,15 +51,15 @@ const NewArrival: React.FC = () => {
           }}
           modules={[Navigation, Autoplay]}
         >
-          {allArrival.map((arrival) => (
-            <SwiperSlide key={arrival.id}>
-              <FeaturedCard
-                name={arrival.name}
-                image={arrival.image}
-                price={arrival.price}
-              />
-            </SwiperSlide>
-          ))}
+          {isLoading ? (
+            <DataLoader />
+          ) : (
+            allArrival?.data.map((arrival: Product) => (
+              <SwiperSlide key={arrival._id}>
+                <FeaturedCard product={arrival} />
+              </SwiperSlide>
+            ))
+          )}
         </Swiper>
       </div>
     </div>

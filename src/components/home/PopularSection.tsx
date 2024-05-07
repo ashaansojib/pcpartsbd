@@ -58,12 +58,7 @@ const PopularSection: React.FC = () => {
         >
           {popularItem.map((item) => (
             <SwiperSlide key={item.id}>
-              <FeaturedCard
-                key={item.id}
-                name={item.name}
-                image={item.image}
-                price={item.price}
-              />
+              {/* <FeaturedCard key={item.id} product={item} /> */}
             </SwiperSlide>
           ))}
         </Swiper>
