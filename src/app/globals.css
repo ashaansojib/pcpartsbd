@@ -115,6 +115,3 @@ input, textarea{
 .error-btn{
   @apply text-red-500
 }
-.checkout-btn{
-  @apply py-2 px-4 bg-green-500 w-full text-white font-semibold mt-2 rounded-md hover:bg-secondary hover:text-primary transition duration-300 ease-out
-}

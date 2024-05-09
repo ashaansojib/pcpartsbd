@@ -11,15 +11,19 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowsRotate } from "react-icons/fa6";
+import { CartItemProps } from "../../../global-interfaces";
+import Image from "next/image";
 
 const Checkout = () => {
-  const rows = [
-    { name: "Walton AC", price: 120000, image: "Banner", quantity: 1 },
-  ];
+  const [countItem, setCountItem] = useState([]);
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCountItem(data);
+  }, []);
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState(0);
   const handleQuantity = (event) => {
@@ -41,19 +45,21 @@ const Checkout = () => {
           <TableHead>
             <TableRow>
               <TableCell>Image</TableCell>
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Model</TableCell>
-              <TableCell align="right">Quantity</TableCell>
-              <TableCell align="right">Price</TableCell>
+              <TableCell align="center">Name</TableCell>
+              <TableCell align="center">Model</TableCell>
+              <TableCell align="center">Quantity</TableCell>
+              <TableCell align="center">Price</TableCell>
               <TableCell align="right">Total</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell>{row.image}</TableCell>
-                <TableCell align="right">{row.name}</TableCell>
-                <TableCell align="right">Ashaduzzaman Sojib</TableCell>
+            {countItem.map((row: CartItemProps) => (
+              <TableRow key={row._id}>
+                <TableCell>
+                  <Image src={row.image} alt="product image" height={100} width={100}/>
+                </TableCell>
+                <TableCell align="center">{row.title}</TableCell>
+                <TableCell align="center">{row.model}</TableCell>
                 <TableCell className="flex gap-2">
                   <input
                     onChange={(e) => handleQuantity(e)}
@@ -146,11 +152,17 @@ const Checkout = () => {
           </h3>
           <h3 className="font-medium p-2">Total: 122,000</h3>
         </div>
-        <div className="flex gap-2">
-          <Link href="/" className="add-to-card-btn">
+        <div className="flex gap-4 justify-center pt-3">
+          <Link
+            href="/"
+            className="px-3 py-2 bg-primary inline-block text-white uppercase font-semibold"
+          >
             Continue Shopping
           </Link>
-          <Link href="/checkout/cart" className="checkout-btn">
+          <Link
+            href="/checkout/cart"
+            className="px-3 py-2 bg-green-500 text-white uppercase font-semibold inline-block"
+          >
             Checkout
           </Link>
         </div>

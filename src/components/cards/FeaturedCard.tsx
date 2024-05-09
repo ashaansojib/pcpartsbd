@@ -1,10 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Product } from "../../../global-interfaces";
+import { FeaturedCardProps } from "../../../global-interfaces";
 
-const FeaturedCard: React.FC<{ product: Product }> = ({ product }) => {
-  const { title, image, price, discount, _id } = product;
+const FeaturedCard: React.FC<FeaturedCardProps> = ({ product, handleBuy }) => {
+  const { title, image, price, discount, _id, model } = product;
+  const addData = {
+    _id,
+    title,
+    image,
+    price,
+    discount,
+    model,
+    quantity: 1,
+  };
   return (
     <div className="featured-card-container">
       <div className="relative">
@@ -24,9 +33,12 @@ const FeaturedCard: React.FC<{ product: Product }> = ({ product }) => {
       </div>
       <div className="w-full">
         <p className="text-accent">BDT: {price}</p>
-        <Link href="#">
-          <button className="add-to-card-btn">ADD TO CARD</button>
-        </Link>
+          <button
+            onClick={() => handleBuy(addData)}
+            className="add-to-card-btn"
+          >
+            ADD TO CARD
+          </button>
       </div>
     </div>
   );

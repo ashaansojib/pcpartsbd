@@ -12,7 +12,20 @@ import { DataLoader } from "../shared/Loader";
 
 const ChairSection: React.FC = () => {
   const { data: chairs, isLoading } = useGetChairByCategoryQuery([]);
-
+  const handleAddToCart = (data: any) => {
+    const existingCartItem =
+      JSON.parse(localStorage.getItem("cartItems")) || [];
+    const isProductExist = existingCartItem.find(
+      (item: Product) => item._id === data._id
+    );
+    if (isProductExist) {
+      return alert("product already added!");
+    } else {
+      const newItem = data;
+      const updateItem = [...existingCartItem, newItem];
+      localStorage.setItem("cartItems", JSON.stringify(updateItem));
+    }
+  };
   return (
     <div className="py-4">
       <SectionTitle
@@ -50,7 +63,7 @@ const ChairSection: React.FC = () => {
           ) : (
             chairs.data?.map((chair: Product) => (
               <SwiperSlide key={chair._id}>
-                <CaseCard product={chair} />
+                <CaseCard product={chair} handleBuy={handleAddToCart} />
               </SwiperSlide>
             ))
           )}

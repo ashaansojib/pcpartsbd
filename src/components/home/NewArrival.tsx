@@ -9,14 +9,26 @@ import "swiper/css/navigation";
 import { useGetNewArrivalProductQuery } from "@/redux/features/products/productApi";
 import { Product } from "../../../global-interfaces";
 import { DataLoader } from "../shared/Loader";
-
 const NewArrival: React.FC = () => {
   const {
     data: allArrival,
     isLoading,
     refetch,
   } = useGetNewArrivalProductQuery([]);
-
+  const handleAddToCart = (data: any) => {
+    const existingCartItem =
+      JSON.parse(localStorage.getItem("cartItems")) || [];
+    const isProductExist = existingCartItem.find(
+      (item: Product) => item._id === data._id
+    );
+    if (isProductExist) {
+      return alert("product already added!");
+    } else {
+      const newItem = data;
+      const updateItem = [...existingCartItem, newItem];
+      localStorage.setItem("cartItems", JSON.stringify(updateItem));
+    }
+  };
   return (
     <div className="py-4">
       <SectionTitle
@@ -56,7 +68,7 @@ const NewArrival: React.FC = () => {
           ) : (
             allArrival?.data.map((arrival: Product) => (
               <SwiperSlide key={arrival._id}>
-                <FeaturedCard product={arrival} />
+                <FeaturedCard product={arrival} handleBuy={handleAddToCart} />
               </SwiperSlide>
             ))
           )}

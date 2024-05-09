@@ -8,6 +8,20 @@ import { DataLoader } from "../shared/Loader";
 
 const RevengerSection: React.FC = () => {
   const { data: casing, isLoading } = useGetCaseByCategoryQuery([]);
+  const handleAddToCart = (data: any) => {
+    const existingCartItem =
+      JSON.parse(localStorage.getItem("cartItems")) || [];
+    const isProductExist = existingCartItem.find(
+      (item: Product) => item._id === data._id
+    );
+    if (isProductExist) {
+      return alert("product already added!");
+    } else {
+      const newItem = data;
+      const updateItem = [...existingCartItem, newItem];
+      localStorage.setItem("cartItems", JSON.stringify(updateItem));
+    }
+  };
   return (
     <div className="bg-secondary py-4">
       <SectionTitle
@@ -19,7 +33,7 @@ const RevengerSection: React.FC = () => {
           <DataLoader />
         ) : (
           casing.data?.map((revenger: Product) => (
-            <CaseCard key={revenger._id} product={revenger} />
+            <CaseCard key={revenger._id} product={revenger} handleBuy={handleAddToCart} />
           ))
         )}
       </div>

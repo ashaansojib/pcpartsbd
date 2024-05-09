@@ -13,6 +13,20 @@ import { DataLoader } from "../shared/Loader";
 const PopularSection: React.FC = () => {
   const { data: popular, isLoading } = useGetPopularProductQuery([]);
 
+  const handleAddToCart = (data: any) => {
+    const existingCartItem =
+      JSON.parse(localStorage.getItem("cartItems")) || [];
+    const isProductExist = existingCartItem.find(
+      (item: Product) => item._id === data._id
+    );
+    if (isProductExist) {
+      return alert("product already added!");
+    } else {
+      const newItem = data;
+      const updateItem = [...existingCartItem, newItem];
+      localStorage.setItem("cartItems", JSON.stringify(updateItem));
+    }
+  };
   return (
     <>
       <SectionTitle
@@ -54,7 +68,7 @@ const PopularSection: React.FC = () => {
           ) : (
             popular?.data.map((item: Product) => (
               <SwiperSlide key={item._id}>
-                <FeaturedCard product={item} />
+                <FeaturedCard product={item} handleBuy={handleAddToCart} />
               </SwiperSlide>
             ))
           )}
