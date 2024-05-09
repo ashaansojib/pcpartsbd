@@ -29,16 +29,17 @@ const Page = () => {
     reset,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    createMenu(data);
+  const onSubmit: SubmitHandler<Inputs> = async(data) => {
+    await createMenu(data);
     reset();
+    refetch();
   };
   // hadler of toast
   const handleToaster = () => {
     toast.error("This is Admin actions!");
   };
-  const handleRemove = (id: string) => {
-    removeItem(id);
+  const handleRemove = async(id: string) => {
+   await removeItem(id);
     toast.error("This is Admin actions!");
     refetch();
   };

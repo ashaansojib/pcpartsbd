@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowsRotate } from "react-icons/fa6";
@@ -24,10 +24,9 @@ const Checkout = () => {
     const data = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCountItem(data);
   }, []);
-  const [quantity, setQuantity] = useState(1);
-  const [total, setTotal] = useState(0);
-  const handleQuantity = (event) => {
-    setQuantity(event.target.value);
+  const [quantity, setQuantity] = useState<number>(1);
+  const handleQuantity = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuantity(parseInt(event.target.value, 10));
   };
   const handleCoupon = () => {
     toast.error("Code is not vail right now!");
@@ -65,7 +64,7 @@ const Checkout = () => {
                     onChange={(e) => handleQuantity(e)}
                     type="number"
                     min={1}
-                    placeholder={row.quantity}
+                    defaultValue={row.quantity}
                     className="w-[80px]"
                   />
                   <button className="px-3 bg-primary text-white inline-block">

@@ -8,14 +8,13 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import Link from "next/link";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { User } from "../../../../global-interfaces";
 
 const Cart = () => {
   const rows = [
-    { name: "Walton AC", price: 120000, image: "Banner", quantity: 1 },
+    { name: "Walton AC", price: 120000, image: "Banner", quantity: 1, model: "a15s" },
   ];
   const {
     register,
@@ -107,9 +106,9 @@ const Cart = () => {
                 <TableRow key={row.name}>
                   <TableCell>{row.image}</TableCell>
                   <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">Ashaduzzaman Sojib</TableCell>
+                  <TableCell align="right">{row.model}</TableCell>
                   <TableCell className="flex gap-2">
-                    <input placeholder={row.quantity} className="w-[80px]" />
+                    <input type="number" defaultValue={row.quantity} className="w-[80px]" />
                     <button className="px-3 bg-accent text-white">x</button>
                   </TableCell>
                   <TableCell align="right">{row.price}</TableCell>

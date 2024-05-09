@@ -39,5 +39,5 @@ export interface CartItemProps{
   price: Number,
   discount: Number,
   model: string,
-  quantity: Number,
+  quantity: string,
 }
