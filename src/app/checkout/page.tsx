@@ -60,7 +60,7 @@ const Checkout = () => {
                 </TableCell>
                 <TableCell align="center">{row.title}</TableCell>
                 <TableCell align="center">{row.model}</TableCell>
-                <TableCell className="flex gap-2">
+                <TableCell className="flex justify-center items-center gap-2">
                   <input
                     onChange={(e) => handleQuantity(e)}
                     type="number"
@@ -68,7 +68,7 @@ const Checkout = () => {
                     placeholder={row.quantity}
                     className="w-[80px]"
                   />
-                  <button className="px-3 bg-primary text-white">
+                  <button className="px-3 bg-primary text-white inline-block">
                     <FaArrowsRotate />
                   </button>
                   <button className="px-3 bg-accent text-white">x</button>
