@@ -1,10 +1,10 @@
-import { FaGear } from "react-icons/fa6";
+import { FadeLoader } from "react-spinners";
 
 export const DataLoader = () => {
   return (
     <>
-      <div className="w-[100px] mx-auto text-primary flex justify-center items-center h-full p-4">
-        <FaGear className="text-3xl animate-spin" />
+      <div className="w-[50px] mx-auto text-primary flex justify-center items-center p-4">
+        <FadeLoader />
       </div>
       <p className="text-accent text-center">Please Wait...</p>
     </>

@@ -21,6 +21,8 @@ bun dev
 * npm install @mui/material @emotion/react @emotion/styled
 * react-hot-toast
 * npm install @reduxjs/toolkit react-redux
+* npm install react-spinners --save
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
