@@ -1,35 +1,51 @@
-"use client"
+"use client";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
+import Link from "next/link";
 import React, { useState } from "react";
-import { FaArrowsRotate, FaClosedCaptioning } from "react-icons/fa6";
+import toast, { Toaster } from "react-hot-toast";
+import { FaArrowDown } from "react-icons/fa";
+import { FaArrowsRotate } from "react-icons/fa6";
 
 const Checkout = () => {
-  const [quantity, setQuantity] = useState(1);
   const rows = [
     { name: "Walton AC", price: 120000, image: "Banner", quantity: 1 },
   ];
+  const [quantity, setQuantity] = useState(1);
+  const [total, setTotal] = useState(0);
   const handleQuantity = (event) => {
     setQuantity(event.target.value);
   };
-  console.log(quantity);
+  const handleCoupon = () => {
+    toast.error("Code is not vail right now!");
+  };
+
   return (
-    <div className="grid grid-cols-3 gap-4 justify-between">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
+      <Toaster position="top-right" />
       <div className="col-span-2 py-4">
-        <Table stickyHeader aria-label="sticky table">
+        <Table
+          stickyHeader
+          aria-label="sticky table"
+          style={{ minWidth: "450px", overflowY: "auto" }}
+        >
           <TableHead>
             <TableRow>
               <TableCell>Image</TableCell>
               <TableCell align="right">Name</TableCell>
               <TableCell align="right">Model</TableCell>
               <TableCell align="right">Quantity</TableCell>
-              <TableCell align="right">Update & Delete</TableCell>
               <TableCell align="right">Price</TableCell>
+              <TableCell align="right">Total</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -51,19 +67,93 @@ const Checkout = () => {
                   </button>
                   <button className="px-3 bg-accent text-white">x</button>
                 </TableCell>
-                <TableCell align="right">
-                  <button>Update</button>
-                </TableCell>
                 <TableCell align="right">{row.price}</TableCell>
+                <TableCell align="right">{row.price * quantity}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </div>
       <div className="p-4 bg-secondary">
-        <h2 className="text-primary text-xl font-semibold">
-          Continue Purchase?
-        </h2>
+        <h2 className="text-primary pb-2 font-semibold">Continue Purchase?</h2>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<FaArrowDown />}
+            aria-controls="panel2-content"
+            id="panel2-header"
+          >
+            <Typography className="uppercase font-medium">
+              Use Coupon Code
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="flex gap-1 justify-between">
+              <input type="text" placeholder="Enter your coupon code here!" />
+              <button
+                onClick={handleCoupon}
+                className="px-2 bg-primary text-white uppercase font-semibold"
+              >
+                Coupon
+              </button>
+            </div>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<FaArrowDown />}
+            aria-controls="panel2-content"
+            id="panel2-header"
+          >
+            <Typography className="uppercase font-medium">
+              Estimate shipping & Taxes
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="flex gap-1 justify-between">
+              <input type="text" placeholder="Taxes & Fees" />
+              <button
+                onClick={handleCoupon}
+                className="px-2 bg-primary text-white uppercase font-semibold"
+              >
+                taxes
+              </button>
+            </div>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<FaArrowDown />}
+            aria-controls="panel2-content"
+            id="panel2-header"
+          >
+            <Typography className="uppercase font-medium">
+              Hot Deals 15% discount
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="flex gap-1 justify-between">
+              <input type="text" placeholder="15%" />
+              <button className="px-2 bg-primary text-white uppercase font-semibold">
+                gift
+              </button>
+            </div>
+          </AccordionDetails>
+        </Accordion>
+        {/* shopping */}
+        <div className="py-2 mt-2 text-right bg-fuchsia-50">
+          <h3 className="font-medium p-2 border-b">
+            Sub-Total: <span>120,000</span>
+          </h3>
+          <h3 className="font-medium p-2">Total: 122,000</h3>
+        </div>
+        <div className="flex gap-2">
+          <Link href="/" className="add-to-card-btn">
+            Continue Shopping
+          </Link>
+          <Link href="/checkout/cart" className="checkout-btn">
+            Checkout
+          </Link>
+        </div>
       </div>
     </div>
   );

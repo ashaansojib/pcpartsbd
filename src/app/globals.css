@@ -40,7 +40,7 @@ img{
 }
 /* case card */
 .add-to-card-btn{
-  @apply py-2 px-4 bg-primary w-full text-white font-semibold mt-2 rounded-md hover:bg-secondary hover:text-primary transition duration-300 ease-out
+  @apply py-2 px-4 bg-primary w-full text-white font-semibold mt-2 uppercase rounded-md hover:bg-secondary hover:text-primary transition duration-300 ease-out
 }
 .case-card-container{
   @apply border p-2 m-2 md:m-0 rounded-md bg-white h-full text-center flex flex-col justify-between items-center
@@ -107,11 +107,14 @@ img{
   @apply rotate-90 transform transition duration-300
 }
 .submit-btn{
-  @apply py-2 px-4 bg-primary text-white hover:border border-blue-500 border rounded-md hover:bg-secondary hover:text-primary transition duration-300 cursor-pointer
+  @apply py-2 px-4 bg-primary uppercase text-white hover:border border-blue-500 border rounded-md hover:bg-secondary hover:text-primary transition duration-300 cursor-pointer
 }
 input, textarea{
   @apply border px-3 py-2 inline-block w-full
 }
 .error-btn{
   @apply text-red-500
+}
+.checkout-btn{
+  @apply py-2 px-4 bg-green-500 w-full text-white font-semibold mt-2 rounded-md hover:bg-secondary hover:text-primary transition duration-300 ease-out
 }
