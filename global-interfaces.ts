@@ -34,10 +34,10 @@ export interface ProductCardProps {
 export interface CartItemPros {
   _id: string;
   title: string;
-  price: Number;
-  discount: Number;
-  totalPrice: Number;
-  quantity: Number;
+  price: number;
+  discount: number;
+  totalPrice: number;
+  quantity: number;
   image: string;
   model: string;
 }

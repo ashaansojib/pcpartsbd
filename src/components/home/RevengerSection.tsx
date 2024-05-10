@@ -1,12 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { SectionTitle } from "../shared/SectionTitle";
 import CaseCard from "../cards/CaseCard";
 import { useGetCaseByCategoryQuery } from "@/redux/features/products/productApi";
 import { Product } from "../../../global-interfaces";
 import { DataLoader } from "../shared/Loader";
 import { useAddCartItemMutation } from "@/redux/features/addItems/AddCartApi";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const RevengerSection: React.FC = () => {
   const { data: casing, isLoading: getLoader } = useGetCaseByCategoryQuery([]);
@@ -14,16 +14,19 @@ const RevengerSection: React.FC = () => {
 
   const handleAddToCart = async (data: any) => {
     await addCartItem(data);
+  };
+  useEffect(() => {
     if (isSuccess) {
       toast.success("Product Added To Cart!");
     }
     if (isError) {
       toast.error("Product Already Added!");
     }
-  };
-  
+  }, [isSuccess, isError]);
+
   return (
     <div className="bg-secondary py-4">
+      <Toaster position="top-right" />
       <SectionTitle
         title="Explore Avenger"
         description="A Big Options For Choose Avengers Case"

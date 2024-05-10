@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { SectionTitle } from "../shared/SectionTitle";
 import CaseCard from "../cards/CaseCard";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,13 +18,15 @@ const ChairSection: React.FC = () => {
 
   const handleAddToCart = async (data: any) => {
     await addCartItem(data);
+  };
+  useEffect(() => {
     if (isSuccess) {
       toast.success("Product Added To Cart!");
     }
     if (isError) {
       toast.error("Product Already Added!");
     }
-  };
+  }, [isSuccess, isError]);
 
   return (
     <div className="py-4">

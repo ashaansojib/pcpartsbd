@@ -18,13 +18,16 @@ const PopularSection: React.FC = () => {
 
   const handleAddToCart = async (data: any) => {
     await addCartItem(data);
+  };
+  useEffect(() => {
     if (isSuccess) {
       toast.success("Product Added To Cart!");
     }
     if (isError) {
       toast.error("Product Already Added!");
     }
-  };
+  }, [isSuccess, isError]);
+
   
   return (
     <>

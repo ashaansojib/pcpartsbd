@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { FaArrowsRotate, FaArrowDown, FaDeleteLeft } from "react-icons/fa6";
 import { CartItemPros } from "../../../global-interfaces";
@@ -32,7 +32,12 @@ const Checkout = () => {
     refetch();
     toast.success("Deleted item from cart!");
   };
-  console.log(cartItem?.data);
+  const handlePriceUpdate = async (id: string) => {
+    console.log(id);
+  };
+  useEffect(() => {
+    refetch();
+  }, []);
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
       <div className="col-span-2 py-4">
@@ -66,13 +71,17 @@ const Checkout = () => {
                 <TableCell>{item.model}</TableCell>
                 <TableCell align="center" className="space-x-1">
                   <input
+                    onChange={(e) => handlePriceUpdate(e.target.value)}
                     type="number"
-                    defaultValue={1}
+                    defaultValue={item.quantity}
                     min={1}
                     className="w-[50px]"
                   />
-                  <button className="p-2 bg-primary text-white">
-                  <FaArrowsRotate />
+                  <button
+                    onClick={() => handlePriceUpdate(item._id)}
+                    className="p-2 bg-primary text-white"
+                  >
+                    <FaArrowsRotate />
                   </button>
                   <button
                     onClick={() => handleRemove(item._id)}
@@ -81,8 +90,8 @@ const Checkout = () => {
                     <FaDeleteLeft />
                   </button>
                 </TableCell>
-                <TableCell align="right">Price</TableCell>
-                <TableCell align="right">total</TableCell>
+                <TableCell align="right">{item.price}</TableCell>
+                <TableCell align="right">{item.totalPrice}</TableCell>
               </TableRow>
             ))}
           </TableBody>
