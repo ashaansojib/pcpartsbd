@@ -11,27 +11,28 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React from "react";
 import toast from "react-hot-toast";
-import { FaArrowDown } from "react-icons/fa";
-import { FaArrowsRotate } from "react-icons/fa6";
-import { CartItemProps } from "../../../global-interfaces";
+import { FaArrowsRotate, FaArrowDown, FaDeleteLeft } from "react-icons/fa6";
+import { CartItemPros } from "../../../global-interfaces";
 import Image from "next/image";
+import {
+  useGetCartItemsQuery,
+  useRemoveBuyItemMutation,
+} from "@/redux/features/addItems/AddCartApi";
 
 const Checkout = () => {
-  const [countItem, setCountItem] = useState([]);
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("cartItems")) || [];
-    setCountItem(data);
-  }, []);
-  const [quantity, setQuantity] = useState<number>(1);
-  const handleQuantity = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuantity(parseInt(event.target.value, 10));
-  };
+  const { data: cartItem, isLoading, refetch } = useGetCartItemsQuery([]);
+  const [removeItem] = useRemoveBuyItemMutation();
   const handleCoupon = () => {
     toast.error("Code is not vail right now!");
   };
-
+  const handleRemove = async (id: string) => {
+    await removeItem(id);
+    refetch();
+    toast.success("Deleted item from cart!");
+  };
+  console.log(cartItem?.data);
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
       <div className="col-span-2 py-4">
@@ -43,36 +44,45 @@ const Checkout = () => {
           <TableHead>
             <TableRow>
               <TableCell>Image</TableCell>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="center">Model</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Model</TableCell>
               <TableCell align="center">Quantity</TableCell>
-              <TableCell align="center">Price</TableCell>
+              <TableCell align="right">Price</TableCell>
               <TableCell align="right">Total</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {countItem.map((row: CartItemProps) => (
-              <TableRow key={row._id}>
+            {cartItem?.data.map((item: CartItemPros) => (
+              <TableRow key={item._id}>
                 <TableCell>
-                  <Image src={row.image} alt="product image" height={100} width={100}/>
-                </TableCell>
-                <TableCell align="center">{row.title}</TableCell>
-                <TableCell align="center">{row.model}</TableCell>
-                <TableCell className="flex justify-center items-center gap-2">
-                  <input
-                    onChange={(e) => handleQuantity(e)}
-                    type="number"
-                    min={1}
-                    defaultValue={row.quantity}
-                    className="w-[80px]"
+                  <Image
+                    src={item.image}
+                    alt="product image"
+                    height={100}
+                    width={50}
                   />
-                  <button className="px-3 bg-primary text-white inline-block">
-                    <FaArrowsRotate />
-                  </button>
-                  <button className="px-3 bg-accent text-white">x</button>
                 </TableCell>
-                <TableCell align="right">{row.price}</TableCell>
-                <TableCell align="right">{row.price * quantity}</TableCell>
+                <TableCell>{item.title}</TableCell>
+                <TableCell>{item.model}</TableCell>
+                <TableCell align="center" className="space-x-1">
+                  <input
+                    type="number"
+                    defaultValue={1}
+                    min={1}
+                    className="w-[50px]"
+                  />
+                  <button className="p-2 bg-primary text-white">
+                  <FaArrowsRotate />
+                  </button>
+                  <button
+                    onClick={() => handleRemove(item._id)}
+                    className="bg-accent p-2 text-white"
+                  >
+                    <FaDeleteLeft />
+                  </button>
+                </TableCell>
+                <TableCell align="right">Price</TableCell>
+                <TableCell align="right">total</TableCell>
               </TableRow>
             ))}
           </TableBody>

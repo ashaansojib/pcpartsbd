@@ -4,7 +4,7 @@ import React from "react";
 import { ProductCardProps } from "../../../global-interfaces";
 
 const CaseCard: React.FC<ProductCardProps> = ({ product, handleAddToCart }) => {
-  const { title, image, price, discount, _id, model } = product;
+  const { title, image, price, discount, fileName, model } = product;
   const addData = {
     title,
     image,
@@ -17,7 +17,7 @@ const CaseCard: React.FC<ProductCardProps> = ({ product, handleAddToCart }) => {
   return (
     <div className="case-card-container">
       <div className="relative">
-        <Link href={`/details/${_id}`}>
+        <Link href={`/details/${fileName}`}>
           <Image
             layout="responsive"
             src={image}

@@ -31,3 +31,13 @@ export interface ProductCardProps {
   product: Product;
   handleAddToCart: (id: any) => void;
 }
+export interface CartItemPros {
+  _id: string;
+  title: string;
+  price: Number;
+  discount: Number;
+  totalPrice: Number;
+  quantity: Number;
+  image: string;
+  model: string;
+}

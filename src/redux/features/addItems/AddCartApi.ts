@@ -18,7 +18,7 @@ export const AddCartApi = createApi({
     }),
     removeBuyItem: builder.mutation({
       query: (id) => ({
-        url: `/buy-item/${id}`,
+        url: `/buy-items/${id}`,
         method: "DELETE",
       }),
     }),

@@ -9,7 +9,6 @@ const ProductDetails = ({ params }: { params: { productId: string } }) => {
     data: singleItem,
     isLoading,
     isFetching,
-    refetch,
   } = useGetProductQuery(params.productId);
   if (isLoading || isFetching) {
     return <DataLoader />;
@@ -23,7 +22,6 @@ const ProductDetails = ({ params }: { params: { productId: string } }) => {
     status,
     price,
     description,
-    keyFeature,
     discount,
     model,
   } = singleItem?.data;
