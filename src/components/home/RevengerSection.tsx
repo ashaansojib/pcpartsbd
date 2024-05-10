@@ -6,7 +6,7 @@ import { useGetCaseByCategoryQuery } from "@/redux/features/products/productApi"
 import { Product } from "../../../global-interfaces";
 import { DataLoader } from "../shared/Loader";
 import { useAddCartItemMutation } from "@/redux/features/addItems/AddCartApi";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const RevengerSection: React.FC = () => {
   const { data: casing, isLoading: getLoader } = useGetCaseByCategoryQuery([]);
@@ -23,10 +23,8 @@ const RevengerSection: React.FC = () => {
       toast.error("Product Already Added!");
     }
   }, [isSuccess, isError]);
-
   return (
     <div className="bg-secondary py-4">
-      <Toaster position="top-right" />
       <SectionTitle
         title="Explore Avenger"
         description="A Big Options For Choose Avengers Case"

@@ -5,11 +5,10 @@ export const AddCartApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://pcpartsbd-server.vercel.app/api",
   }),
-  tagTypes: ["CartItemPros"],
+  tagTypes: ["checkout"],
   endpoints: (builder) => ({
     getCartItems: builder.query({
       query: () => "/buy-items",
-      providesTags: ['CartItemPros']
     }),
     addCartItem: builder.mutation({
       query: (data) => ({
