@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { FaArrowDown } from "react-icons/fa";
 import { FaArrowsRotate } from "react-icons/fa6";
 import { CartItemProps } from "../../../global-interfaces";
@@ -34,7 +34,6 @@ const Checkout = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
-      <Toaster position="top-right" />
       <div className="col-span-2 py-4">
         <Table
           stickyHeader

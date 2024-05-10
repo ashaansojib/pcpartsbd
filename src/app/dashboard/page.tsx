@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { FaEdit } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import {
   useGetProductsQuery,
   useRemoveProductMutation,
@@ -42,7 +42,6 @@ const Dashboard: React.FC = () => {
   };
   return (
     <>
-      <Toaster position="top-right" />
       <div>
         <div>
           {isLoading ? (

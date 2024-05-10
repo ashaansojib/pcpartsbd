@@ -3,7 +3,7 @@ import React from "react";
 import { DashboardTitle } from "../shared/DashboardTitle";
 import { FaEdit } from "react-icons/fa";
 import { useForm, SubmitHandler } from "react-hook-form";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import {
   useAddMenuMutation,
   useGetMenusQuery,
@@ -45,7 +45,6 @@ const Page = () => {
   };
   return (
     <>
-      <Toaster position="top-right" />
       <DashboardTitle title="You Can Manage Navigation Here!" />
       <div className="p-2 grid lg:grid-cols-3 grid-cols-1 gap-4 justify-between">
         {/* add menu form */}
@@ -88,7 +87,7 @@ const Page = () => {
               >
                 <p className="font-medium">{menu.title} -</p>
                 <div className=" flex gap-2 items-center ">
-                  <span className="text-xs">/{menu.link}</span>
+                  <span className="text-xs">{menu.link}</span>
                   <FaDeleteLeft
                     onClick={() => handleRemove(menu._id)}
                     className="cursor-pointer"

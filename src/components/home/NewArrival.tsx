@@ -9,24 +9,23 @@ import "swiper/css/navigation";
 import { useGetNewArrivalProductQuery } from "@/redux/features/products/productApi";
 import { Product } from "../../../global-interfaces";
 import { DataLoader } from "../shared/Loader";
+import { useAddCartItemMutation } from "@/redux/features/addItems/AddCartApi";
+import toast from "react-hot-toast";
 const NewArrival: React.FC = () => {
   const {
     data: allArrival,
     isLoading,
-    refetch,
   } = useGetNewArrivalProductQuery([]);
-  const handleAddToCart = (data: any) => {
-    const existingCartItem =
-      JSON.parse(localStorage.getItem("cartItems")) || [];
-    const isProductExist = existingCartItem.find(
-      (item: Product) => item._id === data._id
-    );
-    if (isProductExist) {
-      return alert("product already added!");
-    } else {
-      const newItem = data;
-      const updateItem = [...existingCartItem, newItem];
-      localStorage.setItem("cartItems", JSON.stringify(updateItem));
+
+  const [addCartItem, { isError, isSuccess }] = useAddCartItemMutation();
+
+  const handleAddToCart = async (data: any) => {
+    await addCartItem(data);
+    if (isSuccess) {
+      toast.success("Product Added To Cart!");
+    }
+    if (isError) {
+      toast.error("Product Already Added!");
     }
   };
   return (
@@ -68,7 +67,7 @@ const NewArrival: React.FC = () => {
           ) : (
             allArrival?.data.map((arrival: Product) => (
               <SwiperSlide key={arrival._id}>
-                <FeaturedCard product={arrival} handleBuy={handleAddToCart} />
+                <FeaturedCard product={arrival} handleAddToCart={handleAddToCart} />
               </SwiperSlide>
             ))
           )}

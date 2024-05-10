@@ -9,24 +9,23 @@ import { Navigation } from "swiper/modules";
 import { useGetPopularProductQuery } from "@/redux/features/products/productApi";
 import { Product } from "../../../global-interfaces";
 import { DataLoader } from "../shared/Loader";
+import { useAddCartItemMutation } from "@/redux/features/addItems/AddCartApi";
+import toast from "react-hot-toast";
 
 const PopularSection: React.FC = () => {
   const { data: popular, isLoading } = useGetPopularProductQuery([]);
+  const [addCartItem, { isError, isSuccess }] = useAddCartItemMutation();
 
-  const handleAddToCart = (data: any) => {
-    const existingCartItem =
-      JSON.parse(localStorage.getItem("cartItems")) || [];
-    const isProductExist = existingCartItem.find(
-      (item: Product) => item._id === data._id
-    );
-    if (isProductExist) {
-      return alert("product already added!");
-    } else {
-      const newItem = data;
-      const updateItem = [...existingCartItem, newItem];
-      localStorage.setItem("cartItems", JSON.stringify(updateItem));
+  const handleAddToCart = async (data: any) => {
+    await addCartItem(data);
+    if (isSuccess) {
+      toast.success("Product Added To Cart!");
+    }
+    if (isError) {
+      toast.error("Product Already Added!");
     }
   };
+  
   return (
     <>
       <SectionTitle
@@ -68,7 +67,7 @@ const PopularSection: React.FC = () => {
           ) : (
             popular?.data.map((item: Product) => (
               <SwiperSlide key={item._id}>
-                <FeaturedCard product={item} handleBuy={handleAddToCart} />
+                <FeaturedCard product={item} handleAddToCart={handleAddToCart} />
               </SwiperSlide>
             ))
           )}

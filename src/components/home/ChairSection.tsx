@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SectionTitle } from "../shared/SectionTitle";
 import CaseCard from "../cards/CaseCard";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,23 +9,23 @@ import { Navigation } from "swiper/modules";
 import { useGetChairByCategoryQuery } from "@/redux/features/products/productApi";
 import { Product } from "../../../global-interfaces";
 import { DataLoader } from "../shared/Loader";
+import toast from "react-hot-toast";
+import { useAddCartItemMutation } from "@/redux/features/addItems/AddCartApi";
 
 const ChairSection: React.FC = () => {
   const { data: chairs, isLoading } = useGetChairByCategoryQuery([]);
-  const handleAddToCart = (data: any) => {
-    const existingCartItem =
-      JSON.parse(localStorage.getItem("cartItems")) || [];
-    const isProductExist = existingCartItem.find(
-      (item: Product) => item._id === data._id
-    );
-    if (isProductExist) {
-      return alert("product already added!");
-    } else {
-      const newItem = data;
-      const updateItem = [...existingCartItem, newItem];
-      localStorage.setItem("cartItems", JSON.stringify(updateItem));
+  const [addCartItem, { isSuccess, isError }] = useAddCartItemMutation();
+
+  const handleAddToCart = async (data: any) => {
+    await addCartItem(data);
+    if (isSuccess) {
+      toast.success("Product Added To Cart!");
+    }
+    if (isError) {
+      toast.error("Product Already Added!");
     }
   };
+
   return (
     <div className="py-4">
       <SectionTitle
@@ -63,7 +63,7 @@ const ChairSection: React.FC = () => {
           ) : (
             chairs.data?.map((chair: Product) => (
               <SwiperSlide key={chair._id}>
-                <CaseCard product={chair} handleBuy={handleAddToCart} />
+                <CaseCard product={chair} handleAddToCart={handleAddToCart} />
               </SwiperSlide>
             ))
           )}

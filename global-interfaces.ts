@@ -11,33 +11,23 @@ export interface Product {
   status: string;
   fileName: string;
 }
-export interface FeaturedCardProps {
-  product: Product;
-  handleBuy: (id: any) => void;
-}
 
 export interface Menu {
   _id: string;
   title: string;
   link: string;
 }
-export interface User{
-  _id: string,
-  firstName: string,
-  lastName: string,
-  address: string,
-  mobile: string,
-  zip: string,
-  division: string,
-  state: string,
+export interface User {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  mobile: string;
+  zip: string;
+  division: string;
+  state: string;
 }
-
-export interface CartItemProps{
-  _id: string,
-  title: string,
-  image: string,
-  price: Number,
-  discount: Number,
-  model: string,
-  quantity: string,
+export interface ProductCardProps {
+  product: Product;
+  handleAddToCart: (id: any) => void;
 }

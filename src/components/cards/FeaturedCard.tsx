@@ -1,23 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FeaturedCardProps } from "../../../global-interfaces";
+import { ProductCardProps } from "../../../global-interfaces";
 
-const FeaturedCard: React.FC<FeaturedCardProps> = ({ product, handleBuy }) => {
-  const { title, image, price, discount, _id, model } = product;
+const FeaturedCard: React.FC<ProductCardProps> = ({
+  product,
+  handleAddToCart,
+}) => {
+  const { title, image, price, discount, fileName, model } = product;
   const addData = {
-    _id,
     title,
     image,
     price,
     discount,
     model,
+    totalPrice: price,
     quantity: 1,
   };
   return (
     <div className="featured-card-container">
       <div className="relative">
-        <Link href={`/details/${_id}`}>
+        <Link href={`/details/${fileName}`}>
           <Image
             layout="responsive"
             src={image}
@@ -33,12 +36,12 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ product, handleBuy }) => {
       </div>
       <div className="w-full">
         <p className="text-accent">BDT: {price}</p>
-          <button
-            onClick={() => handleBuy(addData)}
-            className="add-to-card-btn"
-          >
-            ADD TO CARD
-          </button>
+        <button
+          onClick={() => handleAddToCart(addData)}
+          className="add-to-card-btn"
+        >
+          ADD TO CARD
+        </button>
       </div>
     </div>
   );

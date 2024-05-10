@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "../redux/StoreProvider";
 import Carts from "@/components/shared/Carts";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,8 +20,8 @@ export default function RootLayout({
     <html lang="en">
       <StoreProvider>
         <body className={`inter.className relative`}>
+          <Toaster position="top-right"/>
           {children}
-
           <div>
             <Carts />
           </div>
