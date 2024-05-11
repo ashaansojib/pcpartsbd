@@ -28,6 +28,7 @@ export interface User {
   zip: string;
   division: string;
   state: string;
+  comment: string;
 }
 export interface ProductCardProps {
   product: Product;

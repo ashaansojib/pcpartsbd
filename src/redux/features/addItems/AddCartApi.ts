@@ -34,6 +34,13 @@ export const AddCartApi = createApi({
       }),
       invalidatesTags: ["checkout"],
     }),
+    orderConfirm: builder.mutation({
+      query: () => ({
+        url: "/buy-items",
+        method: 'DELETE',
+      }),
+      invalidatesTags: ["checkout"],
+    }),
   }),
 });
 
@@ -42,4 +49,5 @@ export const {
   useGetCartItemsQuery,
   useRemoveBuyItemMutation,
   useUpdateQuantityMutation,
+  useOrderConfirmMutation,
 } = AddCartApi;

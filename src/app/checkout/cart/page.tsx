@@ -11,13 +11,20 @@ import {
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CartItemPros, User } from "../../../../global-interfaces";
-import { useGetCartItemsQuery } from "@/redux/features/addItems/AddCartApi";
+import {
+  useGetCartItemsQuery,
+  useOrderConfirmMutation,
+} from "@/redux/features/addItems/AddCartApi";
 import Image from "next/image";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
-  const { data: cartItem, isLoading } = useGetCartItemsQuery([]);
+  const { data: cartItem } = useGetCartItemsQuery([]);
+  const [orderConfirm] = useOrderConfirmMutation();
   const [shippingMethod, setShippingMethod] = useState(0);
-  const [checkTerms, setCheckTerms] = useState(false);
+  const [userType, setUserType] = useState("guest");
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -25,18 +32,21 @@ const Cart = () => {
     reset,
     formState: { errors },
   } = useForm<User>();
-  const onSubmit: SubmitHandler<User> = (data) => {
-    const buyProductData = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      mobile: data.mobile,
-      division: data.division,
-      state: data.state,
-      zip: data.zip,
-      deliverFee: shippingMethod,
-    }
+  const onSubmit: SubmitHandler<User> = async (data) => {
+    // const buyProductData = {
+    //   firstName: data.firstName,
+    //   lastName: data.lastName,
+    //   mobile: data.mobile,
+    //   division: data.division,
+    //   state: data.state,
+    //   zip: data.zip,
+    //   deliverFee: shippingMethod,
+    //   comment: data.comment,
+    // };
+    await orderConfirm({});
+    toast.success("Order Confirmed Now!")
     reset();
-    console.log(buyProductData);
+    router.push("/")
   };
   const handleShippingMethod = (price: number) => {
     if (price === 60) {
@@ -45,49 +55,58 @@ const Cart = () => {
       setShippingMethod(0);
     }
   };
-  const toggleCheck = () => {
-    setCheckTerms(!checkTerms);
-  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-slate-50">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 justify-between">
         <div className="p-2 md:p-4">
-          <FormControlLabel control={<Checkbox />} label="As Guest" />
-          <FormControlLabel control={<Checkbox />} label="Sign Up" />
+          <FormControlLabel
+            onClick={() => setUserType("guest")}
+            control={<Checkbox checked={userType === "guest"} />}
+            label="As Guest"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={userType === "user"} />}
+            onClick={() => setUserType("user")}
+            label="Sign Up"
+          />
           <h2 className="font-semibold">Your Personal Details</h2>
           <div>
             <label className="py-2 inline-block px-1">First Name</label>
             <input
+              disabled={userType === "guest"}
               placeholder="First Name"
-              {...register("firstName", { required: true })}
+              {...register("firstName")}
             />
             <label className="py-2 inline-block px-1">Last Name</label>
             <input
+              disabled={userType === "guest"}
               placeholder="Last Name"
-              {...register("lastName", { required: true })}
+              {...register("lastName")}
             />
             <label className="py-2 inline-block px-1">Mobile</label>
             <input
+              disabled={userType === "guest"}
               placeholder="Mobile"
-              {...register("mobile", { required: true })}
+              {...register("mobile")}
             />
             <label className="py-2 inline-block px-1">Division</label>
-
             <input
+              disabled={userType === "guest"}
               placeholder="Division"
-              {...register("division", { required: true })}
+              {...register("division")}
             />
             <label className="py-2 inline-block px-1">State</label>
-
             <input
+              disabled={userType === "guest"}
               placeholder="State"
-              {...register("state", { required: true })}
+              {...register("state")}
             />
             <label className="py-2 inline-block px-1">Zip Code</label>
-
             <input
+              disabled={userType === "guest"}
               placeholder="Postal Code"
-              {...register("zip", { required: true })}
+              {...register("zip")}
             />
           </div>
         </div>
@@ -148,22 +167,21 @@ const Cart = () => {
             </TableBody>
           </Table>
           <div className="py-2 mt-2 text-right bg-fuchsia-50">
-            <h3 className="font-medium p-2 border-b">Sub-Total: 120,000</h3>
+            <h3 className="font-medium p-2 border-b">
+              Sub-Total: {cartItem?.totalPrice}
+            </h3>
             <h3 className="font-medium p-2 border-b">
               Dalivery Fee: {shippingMethod}
             </h3>
-            <h3 className="font-medium p-2">Total: 122,000</h3>
+            <h3 className="font-medium p-2">
+              Total: {cartItem?.totalPrice + shippingMethod}
+            </h3>
           </div>
           <h2 className="font-semibold pt-4 pb-2">Comment Box...</h2>
           <textarea
             placeholder="Share your any opinion as you want!"
-            id=""
+            {...register("comment")}
           ></textarea>
-          <FormControlLabel
-            className="block"
-            control={<Checkbox />}
-            label="I wish to subscribe of the PC Parts BD newsletter"
-          />
           <FormControlLabel
             className="block"
             control={<Checkbox />}
@@ -173,11 +191,6 @@ const Cart = () => {
             className="block"
             control={<Checkbox />}
             label="I read and agree to the Terms & Conditions"
-          />
-          <FormControlLabel
-            className="block"
-            control={<Checkbox />}
-            label="I read and agree to the Refund Policy"
           />
           <input
             type="submit"
