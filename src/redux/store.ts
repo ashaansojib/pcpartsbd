@@ -1,18 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productApi } from "./features/products/productApi";
+import { ProductApi } from "./features/products/productApi";
 import { navApi } from "./features/navItem/navApi";
 import { AddCartApi } from "./features/addItems/AddCartApi";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      [productApi.reducerPath]: productApi.reducer,
+      [ProductApi.reducerPath]: ProductApi.reducer,
       [navApi.reducerPath]: navApi.reducer,
       [AddCartApi.reducerPath]: AddCartApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
-        productApi.middleware,
+        ProductApi.middleware,
         navApi.middleware,
         AddCartApi.middleware,
       ]),

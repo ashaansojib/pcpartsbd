@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const productApi = createApi({
-  reducerPath: "productApi",
+export const ProductApi = createApi({
+  reducerPath: "ProductApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://pcpartsbd-server.vercel.app/api",
   }),
@@ -54,4 +54,4 @@ export const {
   useGetChairByCategoryQuery,
   useGetNewArrivalProductQuery,
   useGetPopularProductQuery,
-} = productApi;
+} = ProductApi;
