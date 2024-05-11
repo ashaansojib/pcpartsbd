@@ -9,6 +9,7 @@ export const AddCartApi = createApi({
   endpoints: (builder) => ({
     getCartItems: builder.query({
       query: () => "/buy-items",
+      providesTags: ["checkout"],
     }),
     addCartItem: builder.mutation({
       query: (data) => ({
@@ -16,12 +17,14 @@ export const AddCartApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["checkout"],
     }),
     removeBuyItem: builder.mutation({
       query: (id) => ({
         url: `/buy-items/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["checkout"],
     }),
   }),
 });

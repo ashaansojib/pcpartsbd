@@ -6,6 +6,7 @@ import { FaCartShopping } from "react-icons/fa6";
 
 const Carts = () => {
   const { data: cartItem, isLoading } = useGetCartItemsQuery([]);
+
   return (
     <Link href="/checkout">
       <div className="p-3 fixed z-10 bottom-20 shadow-md hover:shadow-black right-8 rounded bg-primary text-white">

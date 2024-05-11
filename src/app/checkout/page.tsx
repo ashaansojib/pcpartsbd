@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import toast from "react-hot-toast";
 import { FaArrowsRotate, FaArrowDown, FaDeleteLeft } from "react-icons/fa6";
 import { CartItemPros } from "../../../global-interfaces";
@@ -22,22 +22,19 @@ import {
 } from "@/redux/features/addItems/AddCartApi";
 
 const Checkout = () => {
-  const { data: cartItem, isLoading, refetch } = useGetCartItemsQuery([]);
+  const { data: cartItem } = useGetCartItemsQuery([]);
   const [removeItem] = useRemoveBuyItemMutation();
   const handleCoupon = () => {
     toast.error("Code is not vail right now!");
   };
   const handleRemove = async (id: string) => {
     await removeItem(id);
-    refetch();
     toast.success("Deleted item from cart!");
   };
   const handlePriceUpdate = async (id: string) => {
     console.log(id);
   };
-  useEffect(() => {
-    refetch();
-  }, []);
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
       <div className="col-span-2 py-4">

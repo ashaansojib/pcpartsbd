@@ -8,14 +8,16 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { User } from "../../../../global-interfaces";
+import { CartItemPros, User } from "../../../../global-interfaces";
+import { useGetCartItemsQuery } from "@/redux/features/addItems/AddCartApi";
+import Image from "next/image";
 
 const Cart = () => {
-  const rows = [
-    { name: "Walton AC", price: 120000, image: "Banner", quantity: 1, model: "a15s" },
-  ];
+  const { data: cartItem, isLoading } = useGetCartItemsQuery([]);
+  const [shippingMethod, setShippingMethod] = useState(0);
+  const [checkTerms, setCheckTerms] = useState(false);
   const {
     register,
     handleSubmit,
@@ -24,8 +26,27 @@ const Cart = () => {
     formState: { errors },
   } = useForm<User>();
   const onSubmit: SubmitHandler<User> = (data) => {
-    console.log(data);
+    const buyProductData = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      mobile: data.mobile,
+      division: data.division,
+      state: data.state,
+      zip: data.zip,
+      deliverFee: shippingMethod,
+    }
     reset();
+    console.log(buyProductData);
+  };
+  const handleShippingMethod = (price: number) => {
+    if (price === 60) {
+      setShippingMethod(60);
+    } else {
+      setShippingMethod(0);
+    }
+  };
+  const toggleCheck = () => {
+    setCheckTerms(!checkTerms);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-slate-50">
@@ -74,52 +95,63 @@ const Cart = () => {
           <h2 className="font-semibold">Shipping Methods</h2>
           <div>
             <FormControlLabel
-              control={<Checkbox />}
+              onClick={() => handleShippingMethod(0)}
+              control={<Checkbox checked={shippingMethod === 0} />}
               label="Pickup From Store - TK 0"
             />
             <FormControlLabel
-              control={<Checkbox />}
-              label="In of Rangpur City - TK 60"
+              onClick={() => handleShippingMethod(60)}
+              control={<Checkbox checked={shippingMethod === 60} />}
+              label="Out of Rangpur City - TK 60"
             />
           </div>
           <h2 className="font-semibold">Payment Methods</h2>
           <div>
             <FormControlLabel
-              control={<Checkbox />}
+              control={<Checkbox disabled={true} />}
               label="Pay with cards / E-Pay / Bank Card"
             />
-            <FormControlLabel control={<Checkbox />} label="Cash On Delivery" />
+            <FormControlLabel
+              control={<Checkbox checked />}
+              label="Cash On Delivery"
+            />
           </div>
           <Table style={{ minWidth: "450px", overflowY: "auto" }}>
             <TableHead>
               <TableRow>
                 <TableCell>Image</TableCell>
-                <TableCell align="right">Name</TableCell>
-                <TableCell align="right">Model</TableCell>
-                <TableCell align="right">Quantity</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Model</TableCell>
+                <TableCell>Quantity</TableCell>
                 <TableCell align="right">Price</TableCell>
                 <TableCell align="right">Total</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell>{row.image}</TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.model}</TableCell>
-                  <TableCell className="flex gap-2">
-                    <input type="number" defaultValue={row.quantity} className="w-[80px]" />
-                    <button className="px-3 bg-accent text-white">x</button>
+              {cartItem?.data.map((item: CartItemPros) => (
+                <TableRow key={item._id}>
+                  <TableCell>
+                    <Image
+                      src={item.image}
+                      alt="Product Image"
+                      height={50}
+                      width={100}
+                    />
                   </TableCell>
-                  <TableCell align="right">{row.price}</TableCell>
-                  <TableCell align="right">{row.price}</TableCell>
+                  <TableCell>{item.title}</TableCell>
+                  <TableCell>{item.model}</TableCell>
+                  <TableCell>{item.quantity}</TableCell>
+                  <TableCell align="right">{item.totalPrice}</TableCell>
+                  <TableCell align="right">{item.price}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
           <div className="py-2 mt-2 text-right bg-fuchsia-50">
             <h3 className="font-medium p-2 border-b">Sub-Total: 120,000</h3>
-            <h3 className="font-medium p-2 border-b">Dalivery Fee: 0</h3>
+            <h3 className="font-medium p-2 border-b">
+              Dalivery Fee: {shippingMethod}
+            </h3>
             <h3 className="font-medium p-2">Total: 122,000</h3>
           </div>
           <h2 className="font-semibold pt-4 pb-2">Comment Box...</h2>
@@ -130,11 +162,10 @@ const Cart = () => {
           <FormControlLabel
             className="block"
             control={<Checkbox />}
-            label="I wish to subscribe to the Universal Computer BD newsletter"
+            label="I wish to subscribe of the PC Parts BD newsletter"
           />
           <FormControlLabel
-            sx={{ fontSize: 14 }}
-            className="block text-sm"
+            className="block"
             control={<Checkbox />}
             label="I read and agree to the Privacy Policy"
           />
