@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { FaArrowsRotate, FaArrowDown, FaDeleteLeft } from "react-icons/fa6";
 import { CartItemPros } from "../../../global-interfaces";
@@ -19,11 +19,14 @@ import Image from "next/image";
 import {
   useGetCartItemsQuery,
   useRemoveBuyItemMutation,
+  useUpdateQuantityMutation,
 } from "@/redux/features/addItems/AddCartApi";
 
 const Checkout = () => {
   const { data: cartItem } = useGetCartItemsQuery([]);
   const [removeItem] = useRemoveBuyItemMutation();
+  const [updateQuantity] = useUpdateQuantityMutation();
+const [quantity, setQuantity] = useState(1)
   const handleCoupon = () => {
     toast.error("Code is not vail right now!");
   };
@@ -31,10 +34,14 @@ const Checkout = () => {
     await removeItem(id);
     toast.success("Deleted item from cart!");
   };
-  const handlePriceUpdate = async (id: string) => {
-    console.log(id);
+  const handlePriceUpdate = async (id:string) => {
+    try {
+      updateQuantity({ id, data: { quantity: quantity } });
+      toast.success("Price updated successfully!");
+    } catch (error) {
+      toast.error("Failed to update the quantity!");
+    }
   };
-  
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
       <div className="col-span-2 py-4">
@@ -68,7 +75,7 @@ const Checkout = () => {
                 <TableCell>{item.model}</TableCell>
                 <TableCell align="center" className="space-x-1">
                   <input
-                    onChange={(e) => handlePriceUpdate(e.target.value)}
+                    onChange={(e) => setQuantity(parseFloat(e.target.value))}
                     type="number"
                     defaultValue={item.quantity}
                     min={1}
@@ -164,7 +171,7 @@ const Checkout = () => {
           <h3 className="font-medium p-2 border-b">
             Sub-Total: <span>120,000</span>
           </h3>
-          <h3 className="font-medium p-2">Total: 122,000</h3>
+          <h3 className="font-medium p-2">Total: {cartItem?.totalPrice}</h3>
         </div>
         <div className="flex gap-4 justify-center pt-3">
           <Link

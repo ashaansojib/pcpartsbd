@@ -7,15 +7,15 @@ const FeaturedCard: React.FC<ProductCardProps> = ({
   product,
   handleAddToCart,
 }) => {
-  const { title, image, price, discount, fileName, model } = product;
+  const { title, image, price, discount, model, fileName } = product;
   const addData = {
     title,
     image,
     price,
     discount,
     model,
-    totalPrice: price,
     quantity: 1,
+    totalPrice: price,
   };
   return (
     <div className="featured-card-container">

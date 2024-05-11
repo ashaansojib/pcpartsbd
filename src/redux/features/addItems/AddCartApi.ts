@@ -26,6 +26,14 @@ export const AddCartApi = createApi({
       }),
       invalidatesTags: ["checkout"],
     }),
+    updateQuantity: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/buy-items/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["checkout"],
+    }),
   }),
 });
 
@@ -33,4 +41,5 @@ export const {
   useAddCartItemMutation,
   useGetCartItemsQuery,
   useRemoveBuyItemMutation,
+  useUpdateQuantityMutation,
 } = AddCartApi;

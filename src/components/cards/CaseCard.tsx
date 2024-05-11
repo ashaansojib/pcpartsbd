@@ -4,7 +4,7 @@ import React from "react";
 import { ProductCardProps } from "../../../global-interfaces";
 
 const CaseCard: React.FC<ProductCardProps> = ({ product, handleAddToCart }) => {
-  const { title, image, price, discount, fileName, model } = product;
+  const { title, image, price, discount, model, fileName } = product;
   const addData = {
     title,
     image,
@@ -37,7 +37,7 @@ const CaseCard: React.FC<ProductCardProps> = ({ product, handleAddToCart }) => {
           onClick={() => handleAddToCart(addData)}
           className="add-to-card-btn"
         >
-         ADD TO CARD
+          ADD TO CARD
         </button>
       </div>
     </div>

@@ -4,8 +4,10 @@ export interface Product {
   category: string;
   info: string;
   brand: string;
-  price: string;
-  discount: string;
+  price: number;
+  discount: number;
+  totalPrice: number;
+  quantity: number;
   image: string;
   model: string;
   status: string;
