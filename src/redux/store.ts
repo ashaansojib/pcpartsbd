@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { ProductApi } from "./features/products/productApi";
 import { navApi } from "./features/navItem/navApi";
 import { AddCartApi } from "./features/addItems/AddCartApi";
+import { CategoriApi } from "./features/category/FeaturedCat";
 
 export const makeStore = () => {
   return configureStore({
@@ -9,12 +10,14 @@ export const makeStore = () => {
       [ProductApi.reducerPath]: ProductApi.reducer,
       [navApi.reducerPath]: navApi.reducer,
       [AddCartApi.reducerPath]: AddCartApi.reducer,
+      [CategoriApi.reducerPath]: CategoriApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
         ProductApi.middleware,
         navApi.middleware,
         AddCartApi.middleware,
+        CategoriApi.middleware,
       ]),
   });
 };

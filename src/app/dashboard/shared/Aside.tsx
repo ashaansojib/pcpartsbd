@@ -13,6 +13,9 @@ const Aside = () => {
       <Link className="dashboard-menu" href="/dashboard/products">
         Products <FaArrowRight className="dash-icon" />
       </Link>
+      <Link className="dashboard-menu" href="/dashboard/features">
+        Featured <FaArrowRight className="dash-icon" />
+      </Link>
       <Link className="dashboard-menu" href="/dashboard/navigation">
         Menu Bar <FaArrowRight className="dash-icon" />
       </Link>

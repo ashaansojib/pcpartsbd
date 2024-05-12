@@ -19,6 +19,12 @@ export interface Menu {
   title: string;
   link: string;
 }
+export interface Category {
+  _id: string;
+  title: string;
+  link: string;
+  image: string;
+}
 export interface User {
   _id: string;
   firstName: string;
