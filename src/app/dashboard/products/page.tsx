@@ -1,8 +1,15 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { DashboardTitle } from "../shared/DashboardTitle";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAddProductMutation } from "@/redux/features/products/productApi";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 
 type CreateProducts = {
   title: string;
@@ -17,10 +24,10 @@ type CreateProducts = {
 };
 const AddProduct = () => {
   const [addProduct, { isLoading }] = useAddProductMutation();
+  const [selectCategory, setSelectCategory] = useState(" ");
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm<CreateProducts>();
@@ -30,7 +37,7 @@ const AddProduct = () => {
       description: data.info,
       keyFeature: ["price", "fixed"],
       image: data.image,
-      category: data.category.toLowerCase(),
+      category: selectCategory,
       brand: data.brand.toLowerCase(),
       model: data.model,
       status: data.status,
@@ -40,7 +47,10 @@ const AddProduct = () => {
     addProduct(formatedData);
     reset();
   };
-
+  const handleChangeCategory = (event: SelectChangeEvent) => {
+    setSelectCategory(event.target.value as string);
+  };
+  
   return (
     <>
       <DashboardTitle title="Published Your Products Here!" />
@@ -56,10 +66,25 @@ const AddProduct = () => {
               ></textarea>
             </div>
             <div className="bg-slate-100 p-2 space-y-2">
-              <input
+              {/* <input
                 placeholder="Category"
                 {...register("category", { required: true })}
-              />
+              /> */}
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={selectCategory}
+                  label="Category"
+                  onChange={handleChangeCategory}
+                >
+                  <MenuItem value="new-arrival">New Arrival</MenuItem>
+                  <MenuItem value="popular">Popular</MenuItem>
+                  <MenuItem value="casing">Casing</MenuItem>
+                  <MenuItem value="chair">Gamming Chair</MenuItem>
+                </Select>
+              </FormControl>
               <input
                 placeholder="Brand"
                 {...register("brand", { required: true })}

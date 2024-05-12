@@ -11,13 +11,15 @@ const Carts = () => {
     <Link href="/checkout">
       <div className="p-3 fixed z-10 bottom-20 shadow-md hover:shadow-black right-8 rounded bg-primary text-white">
         <FaCartShopping className="text-2xl" />
-        <p
-          className={`absolute -top-4 -right-2 bg-red-500 w-[20px] text-center h-[23px] rounded-full ${
-            isLoading ? "animate-spin" : "animate-none"
-          }`}
-        >
-          {isLoading ? "X" : cartItem?.count}
-        </p>
+        {cartItem?.count >0 && (
+          <p
+            className={`absolute -top-4 -right-2 bg-red-500 w-[20px] text-center h-[23px] rounded-full ${
+              isLoading ? "animate-spin" : "animate-none"
+            }`}
+          >
+            {isLoading ? "X" : cartItem?.count}
+          </p>
+        )}
       </div>
     </Link>
   );
