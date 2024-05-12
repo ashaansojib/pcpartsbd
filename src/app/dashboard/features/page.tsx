@@ -72,7 +72,7 @@ const FeatureCategory = () => {
             />
           </form>
         </div>
-        <div>
+        <div className="pt-2">
           <h3 className="text-accent font-medium border-b">
             Featured Item Lists..
           </h3>

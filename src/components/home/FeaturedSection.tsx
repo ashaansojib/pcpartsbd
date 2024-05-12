@@ -1,26 +1,22 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SectionTitle } from "../shared/SectionTitle";
 import Category from "../cards/Category";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useGetCategoriesQuery } from "@/redux/features/category/FeaturedCat";
 
 interface CategoryProps {
-  id: string;
-  name: string;
+  _id: string;
+  title: string;
   image: string;
 }
 
 const FeaturedSection: React.FC = () => {
-  const [categories, setCategories] = useState<CategoryProps[]>([]);
-  
-  useEffect(() => {
-    fetch("/fake/category.json")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
-  }, []);
+  const { data: categories, isLoading } = useGetCategoriesQuery([]);
+
   return (
     <div className="bg-secondary px-2 py-4">
       <SectionTitle
@@ -54,11 +50,15 @@ const FeaturedSection: React.FC = () => {
           }}
           modules={[Navigation, Autoplay]}
         >
-          {categories.map((category) => (
-            <SwiperSlide key={category.id}>
-              <Category category={category} />
-            </SwiperSlide>
-          ))}
+          {isLoading ? (
+            <p className="text-center">Please Wait Features Loading Now...</p>
+          ) : (
+            categories?.data.map((category: CategoryProps) => (
+              <SwiperSlide key={category._id}>
+                <Category category={category} />
+              </SwiperSlide>
+            ))
+          )}
         </Swiper>
       </div>
     </div>

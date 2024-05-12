@@ -50,3 +50,7 @@ export interface CartItemPros {
   image: string;
   model: string;
 }
+
+export interface CategoryCartProps{
+  product: Product,
+}

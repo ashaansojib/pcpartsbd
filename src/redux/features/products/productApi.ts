@@ -42,6 +42,9 @@ export const ProductApi = createApi({
     getPopularProduct: builder.query({
       query: () => "/products?category=popular",
     }),
+    getProductsByCategory: builder.query({
+      query: (name) => `/products?category=${name}`
+    }),
   }),
 });
 
@@ -54,4 +57,5 @@ export const {
   useGetChairByCategoryQuery,
   useGetNewArrivalProductQuery,
   useGetPopularProductQuery,
+  useGetProductsByCategoryQuery,
 } = ProductApi;

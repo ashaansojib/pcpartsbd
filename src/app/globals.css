@@ -115,3 +115,16 @@ input, textarea{
 .error-btn{
   @apply text-red-500
 }
+.category-cart-container{
+  @apply border-gray-300 border p-3 hover:shadow-xl shadow-emerald-500 relative
+}
+.category-cart-container:hover h3{
+  @apply font-semibold text-accent
+}
+.category-cart-container img{
+  transition: transform 0.3s ease-in;
+}
+.category-cart-container:hover img {
+  transform: scale(0.9);
+  transition: transform 0.3s ease-in-out;
+}
