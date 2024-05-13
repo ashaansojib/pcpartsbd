@@ -43,7 +43,10 @@ export const ProductApi = createApi({
       query: () => "/products?category=popular",
     }),
     getProductsByCategory: builder.query({
-      query: ({category, price}) => `/products?category=${category}&price[lte]=${price}`
+      query: ({ category, price }) => `/products?category=${category}&price[lte]=${price}`
+    }),
+    getProductsBySearch: builder.query({
+      query: (title) => `/products?search=${title}`
     }),
   }),
 });
@@ -58,4 +61,5 @@ export const {
   useGetNewArrivalProductQuery,
   useGetPopularProductQuery,
   useGetProductsByCategoryQuery,
+  useGetProductsBySearchQuery,
 } = ProductApi;

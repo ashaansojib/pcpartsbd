@@ -3,6 +3,7 @@ import { ProductApi } from "./features/products/productApi";
 import { navApi } from "./features/navItem/navApi";
 import { AddCartApi } from "./features/addItems/AddCartApi";
 import { CategoriApi } from "./features/category/FeaturedCat";
+import searchReducer from "./features/products/productSlice"
 
 export const makeStore = () => {
   return configureStore({
@@ -11,6 +12,7 @@ export const makeStore = () => {
       [navApi.reducerPath]: navApi.reducer,
       [AddCartApi.reducerPath]: AddCartApi.reducer,
       [CategoriApi.reducerPath]: CategoriApi.reducer,
+      search: searchReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat([
