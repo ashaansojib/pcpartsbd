@@ -83,6 +83,14 @@ const AddProduct = () => {
                   <MenuItem value="popular">Popular</MenuItem>
                   <MenuItem value="casing">Casing</MenuItem>
                   <MenuItem value="chair">Gamming Chair</MenuItem>
+                  <MenuItem value="laptop">Laptop</MenuItem>
+                  <MenuItem value="monitor">Monitor</MenuItem>
+                  <MenuItem value="ssd&hdd">SSD & HDD</MenuItem>
+                  <MenuItem value="accessorise">Accessorise</MenuItem>
+                  <MenuItem value="networking">Networking</MenuItem>
+                  <MenuItem value="gatget">Gadgets</MenuItem>
+                  <MenuItem value="desktop">Full Desktop</MenuItem>
+                  <MenuItem value="component">Components</MenuItem>
                 </Select>
               </FormControl>
               <input

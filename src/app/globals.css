@@ -81,10 +81,10 @@ img{
   font-weight: 600;
 }
 .active{
-  @apply py-2 px-4 inline-block bg-primary text-white uppercase font-semibold
+  @apply py-1 md:py-2 px-4 block md:inline-block bg-primary text-white uppercase font-semibold
 }
 .default{
-  @apply py-2 px-4 inline-block hover:bg-primary hover:text-white text-primary uppercase font-semibold border-r
+  @apply py-1 md:py-2 px-4 block md:inline-block hover:bg-primary hover:text-white text-primary uppercase font-semibold border-b md:border-r
 }
 
 /* main header css */
@@ -92,7 +92,7 @@ img{
   @apply my-container grid lg:grid-cols-7 grid-cols-1 gap-4 justify-between items-center w-full md:p-0 p-2 lg:h-[84px]
 }
 .header-deals{
-  @apply md:col-span-4 md:flex justify-between items-center gap-4
+  @apply md:col-span-4 md:flex justify-between items-center gap-4 hidden md:block
 }
 .header-deal-container{
   @apply py-1 px-2 rounded bg-secondary flex justify-center md:justify-between items-center gap-2
@@ -116,7 +116,7 @@ input, textarea{
   @apply text-red-500
 }
 .category-cart-container{
-  @apply border-gray-300 border p-3 hover:shadow-xl shadow-emerald-500 relative
+  @apply border-gray-300 border p-3 hover:shadow-xl shadow-emerald-500 relative flex flex-col justify-between
 }
 .category-cart-container:hover h3{
   @apply font-semibold text-accent

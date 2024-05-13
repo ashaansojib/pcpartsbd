@@ -1,22 +1,32 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import TopHeader from "./TopHeader";
 import NavBar from "./NavBar";
 import { FaBlackTie, FaSearch, FaTrash } from "react-icons/fa";
-import { FaBookBookmark, FaDesktop, FaHandshakeSimple } from "react-icons/fa6";
+import { FaBars, FaBookBookmark, FaDesktop, FaHandshakeSimple } from "react-icons/fa6";
 import Link from "next/link";
+import MobileMenu from "./MobileMenu";
 
 const Header = () => {
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
   return (
     <header>
       <TopHeader />
       {/* main header area */}
       <div className="header-container">
         {/* logo area */}
+        <div className="flex justify-between items-center">
         <Link href="/">
           <h3 className="text-3xl font-bold w-[150px]">
             PCParts<span className="text-accent">BD</span>
           </h3>
         </Link>
+        <FaBars className="block md:hidden text-3xl" onClick={toggleDrawer(true)}>Open drawer</FaBars>
+        </div>
         {/* search bar */}
         <div className="relative md:col-span-2">
           <input
@@ -65,6 +75,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <MobileMenu toggleDrawer={toggleDrawer} open={open}/>
       <NavBar />
     </header>
   );

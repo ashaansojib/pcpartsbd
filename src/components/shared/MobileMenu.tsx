@@ -1,15 +1,19 @@
-"use client";
 import { useGetMenusQuery } from "@/redux/features/navItem/navApi";
+import { Box, Drawer } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 import { Menu } from "../../../global-interfaces";
 
-const NavBar = () => {
+interface ToggleProps {
+  toggleDrawer: (newOpen: boolean) => () => void;
+  open: boolean;
+}
+
+const MobileMenu = ({ toggleDrawer, open }: ToggleProps) => {
   const { data: menus, isLoading } = useGetMenusQuery([]);
   return (
-    <nav className="border hidden md:block">
-      <div className="my-container">
-        <ul>
+      <Drawer open={open} onClose={toggleDrawer(false)}>
+        <ul className="w-[250px]">
           <Link href="/" className="active">
             Home
           </Link>
@@ -21,9 +25,8 @@ const NavBar = () => {
                 </Link>
               ))}
         </ul>
-      </div>
-    </nav>
+      </Drawer>
   );
 };
 
-export default NavBar;
+export default MobileMenu;

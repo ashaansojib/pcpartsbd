@@ -43,7 +43,7 @@ export const ProductApi = createApi({
       query: () => "/products?category=popular",
     }),
     getProductsByCategory: builder.query({
-      query: (name) => `/products?category=${name}`
+      query: ({category, price}) => `/products?category=${category}&price[lte]=${price}`
     }),
   }),
 });
