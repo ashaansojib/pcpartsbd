@@ -1,53 +1,46 @@
 [
     {
       "id": "1",
-      "brand": "Intel",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
+      "brand": "axd",
+      "logo":"https://www.universal.com.bd/image/cache/catalog/ucb/brand/AXD-logo-150x70h.jpg.webp"
     },
     {
       "id": "2",
-      "brand": "AMD",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
+      "brand": "biostar",
+      "logo":"https://www.universal.com.bd/image/cache/catalog/biostar/download-150x70h.png.webp"
     },
     {
       "id": "3",
-      "brand": "NVIDIA",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
+      "brand": "montech",
+      "logo":"https://www.universal.com.bd/image/cache/catalog/ucb/brand/montech-logo-150x70h.jpg.webp"
     },
     {
       "id": "4",
-      "brand": "Corsair",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
+      "brand": "kioxia",
+      "logo":"https://www.universal.com.bd/image/cache/catalog/Manufacturers/kioxia-150x70w.jpg.webp"
     },
     {
       "id": "5",
-      "brand": "Asus",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
+      "brand": "pocooler",
+      "logo":"https://www.universal.com.bd/image/cache/catalog/ucb/brand/pocooler-logo-150x70h.png.webp"
     },
     {
       "id": "6",
-      "brand": "Gigabyte",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
-    },
-    {
-      "id": "7",
-      "brand": "MSI",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
+      "brand": "Zovision",
+      "logo":"https://www.universal.com.bd/image/cache/catalog/ucb/brand/jovision-logo-150x70h.jpg.webp"
     },
     {
       "id": "8",
-      "brand": "EVGA",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
+      "brand": "marvo",
+      "logo":"https://www.universal.com.bd/image/cache/catalog/Manufacturers/marvo-150x70h.jpg.webp"
     },
     {
       "id": "9",
-      "brand": "Western Digital",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
-    },
-    {
-      "id": "10",
-      "brand": "Seagate",
-      "logo":"https://www.universal.com.bd/image/cache/catalog/SSD/kioxia/exceria/kioxia-ltc10z240gg8-exceria-240-gb-25-inch-ssd-2-476x476.jpg.webp"
+      "brand": "revenger",
+      "logo":"https://www.universal.com.bd/image/cache/catalog/AAAA/logo/revenger-150x70h.jpg.webp"
+    },{
+      "id": "7",
+      "brand": "axd",
+      "logo":"https://www.universal.com.bd/image/cache/catalog/ucb/brand/AXD-logo-150x70h.jpg.webp"
     }
   ]
-  

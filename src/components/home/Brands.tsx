@@ -6,6 +6,9 @@ import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setSearchText } from "@/redux/features/products/productSlice";
 
 interface BrandsProps {
   id: string;
@@ -14,11 +17,17 @@ interface BrandsProps {
 }
 const Brands: React.FC = () => {
   const [brands, setBrands] = useState<BrandsProps[]>([]);
+  const navigate = useRouter();
+  const dispatch = useDispatch();
   useEffect(() => {
     fetch("/fake/brands.json")
       .then((res) => res.json())
       .then((data) => setBrands(data));
   }, []);
+  const handleBrandSearch = (brand: string) => {
+    dispatch(setSearchText(brand));
+    navigate.push("/search");
+  };
   return (
     <div className="my-container pb-3">
       <Swiper
@@ -46,13 +55,22 @@ const Brands: React.FC = () => {
         }}
         modules={[Autoplay]}
       >
-          {brands.map((brand) => (
-            <SwiperSlide key={brand.id} className="border w-full p-2 bg-white">
-              <Link className="flex justify-center items-center" href="#">
-                <Image src={brand.logo} alt="Logo" width={120} height={35} layout="responsive" />
-              </Link>
-            </SwiperSlide>
-          ))}
+        {brands.map((brand) => (
+          <SwiperSlide key={brand.id} className="border w-full p-2 bg-white">
+            <p
+              onClick={() => handleBrandSearch(brand.brand)}
+              className="flex justify-center cursor-pointer items-center"
+            >
+              <Image
+                src={brand.logo}
+                alt="Logo"
+                width={120}
+                height={35}
+                layout="responsive"
+              />
+            </p>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
