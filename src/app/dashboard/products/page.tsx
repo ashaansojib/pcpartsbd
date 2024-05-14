@@ -10,6 +10,7 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
+import toast from "react-hot-toast";
 
 type CreateProducts = {
   title: string;
@@ -45,6 +46,7 @@ const AddProduct = () => {
       discount: parseFloat(data.discount),
     };
     addProduct(formatedData);
+    toast.success("Products Added Successfully!")
     reset();
   };
   const handleChangeCategory = (event: SelectChangeEvent) => {
