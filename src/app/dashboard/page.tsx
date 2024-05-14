@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
             <DataLoader />
           ) : (
             <div className="overflow-x-auto">
-              <Table sx={{width: 650}} stickyHeader aria-label="sticky table">
+              <Table sx={{minWidth: 650}} stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
                   <TableCell>SL</TableCell>

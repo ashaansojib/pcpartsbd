@@ -43,7 +43,7 @@ const Checkout = () => {
     }
   };
   return (
-    <div>
+    <div className="my-container">
       {cartItem?.data.length <= 0 ? (
         <div className="max-w-md mx-auto text-center py-2">
           <p className="p-4 text-xl">Your shopping cart is empty!</p>

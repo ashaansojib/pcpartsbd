@@ -1,7 +1,12 @@
+import MainLayout from "@/components/layout/MainLayout";
 import React from "react";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
-  return <div className="my-container">{children}</div>;
+  return (
+    <>
+      <MainLayout>{children}</MainLayout>
+    </>
+  );
 };
 
 export default layout;

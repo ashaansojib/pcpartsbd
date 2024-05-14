@@ -35,7 +35,7 @@ const CategoryDetails = ({ params }: { params: { categoryId: string } }) => {
   
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-4 justify-between gap-2 py-4">
+      <div className="my-container grid grid-cols-1 lg:grid-cols-4 justify-between gap-2 py-4">
         {/* category sidebar section */}
         <div className="p-2 bg-secondary">
           <FormControl variant="standard" fullWidth>
