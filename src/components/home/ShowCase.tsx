@@ -26,7 +26,7 @@ const ShowCase: React.FC = () => {
                 width={100}
                 height={100}
                 alt="banner"
-                src="https://www.universal.com.bd/image/cache/catalog/AAAA/home-new/banner/video-review-635x354.jpg.webp"
+                src="/banner/feature-1.jpeg"
               />
             </Link>
           </div>
@@ -37,7 +37,7 @@ const ShowCase: React.FC = () => {
                 width={100}
                 height={100}
                 alt="banner"
-                src="https://www.universal.com.bd/image/cache/catalog/AAAA/home-new/banner/video-review-635x354.jpg.webp"
+                src="/banner/feature-2.jpeg"
               />
             </Link>
           </div>

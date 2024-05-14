@@ -18,10 +18,10 @@ const HeroSection = () => {
       >
         <SwiperSlide>
           <Image
-            src="/banner/banner-1.jpg"
+            src="/banner/banner-1.png"
             alt="banner"
-            layout="responsive"
             height={100}
+            layout="responsive"
             width={100}
           />
         </SwiperSlide>
@@ -36,7 +36,7 @@ const HeroSection = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Image
-            src="/banner/banner-3.jpg"
+            src="/banner/banner-3.jpeg"
             alt="banner"
             layout="responsive"
             height={100}

@@ -13,9 +13,7 @@ const NavBar = () => {
           <Link href="/" className="active">
             Home
           </Link>
-          {isLoading
-            ? "Main menubar loading now!"
-            : menus?.data.map((menu: Menu) => (
+          {menus?.data.map((menu: Menu) => (
                 <Link key={menu._id} href={menu.link} className="default">
                   {menu.title}
                 </Link>

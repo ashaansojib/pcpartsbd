@@ -6,7 +6,6 @@ import Carts from "@/components/shared/Carts";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Home: PC-PartsBD",

@@ -6,11 +6,9 @@ import ShowCase from "@/components/home/ShowCase";
 import FeaturedSection from "@/components/home/FeaturedSection";
 import CustomerDeals from "@/components/home/CustomerDeals";
 import HeroSection from "@/components/home/HeroSection";
-import MainLayout from "@/components/layout/MainLayout";
 export default function Home() {
   return (
     <main>
-      <MainLayout>
         <HeroSection />
         <CustomerDeals />
         <FeaturedSection />
@@ -19,7 +17,6 @@ export default function Home() {
         <PopularSection />
         <ChairSection />
         <RevengerSection />
-      </MainLayout>
     </main>
   );
 }
