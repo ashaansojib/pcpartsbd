@@ -44,7 +44,7 @@ const NewArrival: React.FC = () => {
           spaceBetween={10}
           slidesPerView={5}
           navigation={true}
-          autoplay={{ delay: 5000 }}
+          autoplay={{ delay: 5000, pauseOnMouseEnter:true}}
           breakpoints={{
             320: {
               width: 320,

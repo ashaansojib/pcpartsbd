@@ -37,7 +37,7 @@ const Dashboard: React.FC = () => {
 
   const handleRemove = (id: string) => {
     removeProduct(id);
-    toast.error("This is Admin action!");
+    toast.success("Product Removed!");
     refetch();
   };
   return (

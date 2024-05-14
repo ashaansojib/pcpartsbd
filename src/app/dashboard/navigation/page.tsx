@@ -40,7 +40,7 @@ const Page = () => {
   };
   const handleRemove = async(id: string) => {
    await removeItem(id);
-    toast.error("This is Admin actions!");
+    toast.success("Menu Item Remove!");
     refetch();
   };
   return (

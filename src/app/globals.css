@@ -48,17 +48,29 @@ img{
 .case-card-container:hover h2{
   @apply text-red-500 duration-300 ease-in transition
 }
-.case-card-container:hover img{
-  @apply skew-x-1
+.case-card-container img{
+  transition: transform 0.3s ease-in;
 }
+.case-card-container:hover img {
+  transform: scale(0.9);
+  transition: transform 0.3s ease-in-out;
+}
+
 .featured-card-container{
   @apply border p-2 m-2 md:m-0 rounded-md bg-white text-center
 }
 .featured-card-container:hover h2{
   @apply text-red-500 duration-300 ease-in transition
 }
+.featured-card-container img{
+  transition: transform 0.3s ease-in;
+}
+.featured-card-container:hover img {
+  transform: scale(0.9);
+  transition: transform 0.3s ease-in-out;
+}
 .category-container{
-  @apply bg-white cursor-pointer border text-center p-2 flex flex-col justify-between h-[220px] items-center rounded-lg
+  @apply bg-white cursor-pointer border text-center p-2 flex flex-col justify-between items-center rounded-lg
 }
 .deals-container{
   @apply border m-2 md:m-0 p-2 text-center h-full flex flex-col justify-between items-center gap-2 uppercase rounded-lg bg-white
