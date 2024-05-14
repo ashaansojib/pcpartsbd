@@ -42,12 +42,12 @@ const Dashboard: React.FC = () => {
   };
   return (
     <>
-      <div>
         <div>
           {isLoading ? (
             <DataLoader />
           ) : (
-            <Table stickyHeader aria-label="sticky table">
+            <div className="overflow-x-auto">
+              <Table sx={{width: 650}} stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
                   <TableCell>SL</TableCell>
@@ -80,6 +80,7 @@ const Dashboard: React.FC = () => {
                 ))}
               </TableBody>
             </Table>
+            </div>
           )}
         </div>
         <TablePagination
@@ -93,7 +94,6 @@ const Dashboard: React.FC = () => {
           rowsPerPage={rowsPerPage}
           rowsPerPageOptions={[5, 10, 25, 35, 45, 55]}
         />
-      </div>
     </>
   );
 };

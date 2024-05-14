@@ -25,6 +25,7 @@ const MobileMenu = ({ toggleDrawer, open }: ToggleProps) => {
                 </Link>
               ))}
         </ul>
+        <Link className="p-4 font-semibold text-accent" href="/dashboard">Register</Link>
       </Drawer>
   );
 };

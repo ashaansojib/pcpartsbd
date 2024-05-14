@@ -56,7 +56,7 @@ const AddProduct = () => {
       <DashboardTitle title="Published Your Products Here!" />
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-3 gap-2 justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 justify-between">
             <div className="col-span-2 p-2">
               <input placeholder="Title" {...register("title")} />
               <textarea

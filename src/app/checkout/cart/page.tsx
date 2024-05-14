@@ -24,7 +24,7 @@ const Cart = () => {
   const [orderConfirm] = useOrderConfirmMutation();
   const [shippingMethod, setShippingMethod] = useState(0);
   const [userType, setUserType] = useState("guest");
-  const router = useRouter()
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -44,9 +44,9 @@ const Cart = () => {
     //   comment: data.comment,
     // };
     await orderConfirm({});
-    toast.success("Order Confirmed Now!")
+    toast.success("Order Confirmed Now!");
     reset();
-    router.push("/")
+    router.push("/");
   };
   const handleShippingMethod = (price: number) => {
     if (price === 60) {
@@ -135,38 +135,40 @@ const Cart = () => {
               label="Cash On Delivery"
             />
           </div>
-          <Table style={{ minWidth: "450px", overflowY: "auto" }}>
-            <TableHead>
-              <TableRow>
-                <TableCell>Image</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Model</TableCell>
-                <TableCell>Quantity</TableCell>
-                <TableCell align="right">Price</TableCell>
-                <TableCell align="right">Total</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {cartItem?.data.map((item: CartItemPros) => (
-                <TableRow key={item._id}>
-                  <TableCell>
-                    <Image
-                      src={item.image}
-                      alt="Product Image"
-                      height={50}
-                      width={100}
-                      layout="responsive"
-                    />
-                  </TableCell>
-                  <TableCell>{item.title}</TableCell>
-                  <TableCell>{item.model}</TableCell>
-                  <TableCell>{item.quantity}</TableCell>
-                  <TableCell align="right">{item.totalPrice}</TableCell>
-                  <TableCell align="right">{item.price}</TableCell>
+          <div className="overflow-x-auto">
+            <Table style={{ width: 650 }}>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Image</TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Model</TableCell>
+                  <TableCell>Quantity</TableCell>
+                  <TableCell align="right">Price</TableCell>
+                  <TableCell align="right">Total</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHead>
+              <TableBody>
+                {cartItem?.data.map((item: CartItemPros) => (
+                  <TableRow key={item._id}>
+                    <TableCell>
+                      <Image
+                        src={item.image}
+                        alt="Product Image"
+                        height={50}
+                        width={100}
+                        layout="responsive"
+                      />
+                    </TableCell>
+                    <TableCell>{item.title}</TableCell>
+                    <TableCell>{item.model}</TableCell>
+                    <TableCell>{item.quantity}</TableCell>
+                    <TableCell align="right">{item.totalPrice}</TableCell>
+                    <TableCell align="right">{item.price}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
           <div className="py-2 mt-2 text-right bg-fuchsia-50">
             <h3 className="font-medium p-2 border-b">
               Sub-Total: {cartItem?.totalPrice}
