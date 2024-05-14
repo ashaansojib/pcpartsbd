@@ -52,6 +52,7 @@ const ProductDetails = ({ params }: { params: { productId: string } }) => {
               alt="product image"
               width={500}
               height={350}
+              layout="responsive"
             />
           </div>
           <div className="col-span-2">

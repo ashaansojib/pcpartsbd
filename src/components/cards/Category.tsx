@@ -13,7 +13,7 @@ const Category: React.FC<SingleCategroyProps> = ({ category }) => {
   return (
     <div className="category-container">
       <Link href={`/category/${title}`}>
-        <Image src={image} alt="category" width={160} height={40} />
+        <Image src={image} alt="category" width={160} height={40} layout="responsive" />
         <h2 className="text-xl font-medium uppercase">{title}</h2>
       </Link>
     </div>

@@ -21,7 +21,7 @@ const CustomerDeals: React.FC = () => {
       <div className="my-container grid grid-cols-1 lg:grid-cols-8 md:grid-cols-4 justify-between gap-3">
         {deals.map((deal) => (
           <div key={deal.id} className="deals-container">
-            <Image src={deal.image} alt="category" width={160} height={40} />
+            <Image src={deal.image} layout="responsive" alt="category" width={160} height={40} />
             <h3>{deal.title}</h3>
           </div>
         ))}

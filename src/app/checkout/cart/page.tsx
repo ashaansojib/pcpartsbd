@@ -155,6 +155,7 @@ const Cart = () => {
                       alt="Product Image"
                       height={50}
                       width={100}
+                      layout="responsive"
                     />
                   </TableCell>
                   <TableCell>{item.title}</TableCell>

@@ -49,7 +49,7 @@ const Brands: React.FC = () => {
           {brands.map((brand) => (
             <SwiperSlide key={brand.id} className="border w-full p-2 bg-white">
               <Link className="flex justify-center items-center" href="#">
-                <Image src={brand.logo} alt="Logo" width={120} height={35} />
+                <Image src={brand.logo} alt="Logo" width={120} height={35} layout="responsive" />
               </Link>
             </SwiperSlide>
           ))}

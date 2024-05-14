@@ -44,17 +44,20 @@ const Checkout = () => {
   };
   return (
     <div>
-      {cartItem?.data.length <= 0 ? <div className="max-w-md mx-auto text-center py-2">
-        <p className="p-4 text-xl">Your shopping cart is empty!</p>
-        <Link href="/" className="px-3 py-2 bg-primary inline-block text-white uppercase font-semibold">Continue Shopping</Link>
-      </div> : (
+      {cartItem?.data.length <= 0 ? (
+        <div className="max-w-md mx-auto text-center py-2">
+          <p className="p-4 text-xl">Your shopping cart is empty!</p>
+          <Link
+            href="/"
+            className="px-3 py-2 bg-primary inline-block text-white uppercase font-semibold"
+          >
+            Continue Shopping
+          </Link>
+        </div>
+      ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-between">
-          <div className="col-span-2 py-4">
-            <Table
-              stickyHeader
-              aria-label="sticky table"
-              style={{ minWidth: "450px", overflowY: "auto" }}
-            >
+          <div className="col-span-2 py-4 overflow-x-auto">
+            <Table sx={{ width: 650 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
                   <TableCell>Image</TableCell>
@@ -74,6 +77,7 @@ const Checkout = () => {
                         alt="product image"
                         height={100}
                         width={50}
+                        layout="responsive"
                       />
                     </TableCell>
                     <TableCell>{item.title}</TableCell>

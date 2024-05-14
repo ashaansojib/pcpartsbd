@@ -19,7 +19,7 @@ const FooterHead = () => {
     <>
       <div className="py-2 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 justify-between items-center gap-2">
         <div className="text-white">
-          <Image src="/white-logo.png" alt="logo" width="180" height="50" />
+          <Image src="/white-logo.png" alt="logo" width="180" height="50" layout="responsive" />
         </div>
         <div className="col-span-2 md:flex gap-2 items-center">
           <div className="flex gap-2 justify-center items-center text-secondary text-center border rounded-full font-semibold px-4 py-2 border-gray-400 w-[250px]">
@@ -107,7 +107,7 @@ const FooterHead = () => {
         </div>
         <div className="text-white">
           <h3 className="text-white font-bold">Distributor Ship</h3>
-          <Image width="200" height="150" src="/distributor.webp" alt="distributor" />
+          <Image width="200" height="150" layout="responsive" src="/distributor.webp" alt="distributor" />
         </div>
       </div>
     </>

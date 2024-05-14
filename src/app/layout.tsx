@@ -23,7 +23,6 @@ export default function RootLayout({
       <StoreProvider>
         <body className={`inter.className relative`}>
           <Toaster position="top-right" />
-
           <Header />
           {children}
           <div>
