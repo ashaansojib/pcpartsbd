@@ -18,14 +18,16 @@ const CaseCard: React.FC<ProductCardProps> = ({ product, handleAddToCart }) => {
     <div className="case-card-container">
       <div className="relative">
         <Link href={`/details/${fileName}`}>
-          <Image
-            layout="responsive"
-            src={image}
-            alt={title}
-            width={250}
-            height={100}
-          />
-          <h2 className="text-sm font-medium text-primary pb-2">{title}</h2>
+          <div className="h-[250px] flex flex-col">
+            <Image
+              layout="responsive"
+              src={image}
+              alt={title}
+              width={250}
+              height={80}
+            />
+            <h2 className="text-sm font-medium text-primary pb-2">{title}</h2>
+          </div>
         </Link>
         <span className="text-red-500 absolute px-1 left-0 top-0 font-semibold bg-secondary">
           {discount ? `${discount + "%"}` : ""}
