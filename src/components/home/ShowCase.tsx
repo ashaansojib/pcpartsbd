@@ -61,18 +61,18 @@ const ShowCase: React.FC = () => {
                 height={100}
                 layout="responsive"
                 alt="banner"
-                src="https://www.universal.com.bd/image/cache/catalog/AAAA/home-new/banner/Gaming-PC-420x158.jpg.webp"
+                src="/banner/Gaming-PC-420x158.webp"
               ></Image>
             </Link>
           </div>
-          <div>
+          <div className="h-[200px]">
             <Link href="#">
               <Image
                 width={100}
                 height={100}
                 layout="responsive"
                 alt="banner"
-                src="https://www.universal.com.bd/image/cache/catalog/AAAA/home-new/marvo-banner-800x302.jpg.webp"
+                src="https://www.universal.com.bd/image/cache/catalog/AAAA/home-new/marvo-banner-420x158w.jpg.webp"
               ></Image>
             </Link>
           </div>
