@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 
 const RevengerSection: React.FC = () => {
   const { data: casing, isLoading: getLoader } = useGetCaseByCategoryQuery([]);
+
   const [addCartItem, { isError, isSuccess }] = useAddCartItemMutation();
 
   const handleAddToCart = async (data: any) => {
@@ -26,8 +27,8 @@ const RevengerSection: React.FC = () => {
   return (
     <div className="bg-secondary py-4">
       <SectionTitle
-        title="Explore Avenger"
-        description="A Big Options For Choose Avengers Case"
+        title="Explore Revenger"
+        description="A Big Options For Choose Revenger Case"
       />
       <div className="my-container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 justify-between gap-2 h-full">
         {getLoader ? (
