@@ -6,6 +6,7 @@ const Aside = () => {
   return (
     <div className="p-2">
       <Profile />
+      <span className="mt-1 text-xs">GENERAL</span>
       <Link className="dashboard-menu" href="/dashboard">
         Dashboard{" "}
         <svg

@@ -8,7 +8,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="md:p-0 p-2 flex justify-between gap-2 relative">
-      <div className="bg-slate-700 text-white w-[300px] h-screen sticky top-0 left-0">
+      <div className="bg-slate-700 text-white w-[350px] h-screen sticky top-0 left-0">
         <Aside />
       </div>
       <div className="border w-full overflow-y-auto">{children}</div>
