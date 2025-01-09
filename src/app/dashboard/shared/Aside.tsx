@@ -1,26 +1,95 @@
 import React from "react";
 import Profile from "./Profile";
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
 
 const Aside = () => {
   return (
-    <div className="border p-2">
+    <div className="p-2">
       <Profile />
       <Link className="dashboard-menu" href="/dashboard">
-        Dashboard <FaArrowRight className="dash-icon" />
+        Dashboard{" "}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          className="size-4 dash-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+          />
+        </svg>
       </Link>
       <Link className="dashboard-menu" href="/dashboard/products">
-        Products <FaArrowRight className="dash-icon" />
+        Products{" "}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          className="size-4 dash-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+          />
+        </svg>
       </Link>
       <Link className="dashboard-menu" href="/dashboard/features">
-        Featured <FaArrowRight className="dash-icon" />
+        Featured{" "}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          className="size-4 dash-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+          />
+        </svg>
       </Link>
       <Link className="dashboard-menu" href="/dashboard/navigation">
-        Menu Bar <FaArrowRight className="dash-icon" />
+        Menu Bar{" "}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          className="size-4 dash-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+          />
+        </svg>
       </Link>
       <Link className="dashboard-menu" href="/">
-        Logout <FaArrowRight className="dash-icon" />
+        Logout{" "}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          className="size-4 dash-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+          />
+        </svg>
       </Link>
     </div>
   );

@@ -7,11 +7,11 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="my-container md:gap-2 grid md:grid-cols-4 grid-cols-1 justify-between md:p-0 p-2">
-      <div className="mb-2">
+    <div className="md:p-0 p-2 flex justify-between gap-2 relative">
+      <div className="bg-slate-700 text-white w-[300px] h-screen sticky top-0 left-0">
         <Aside />
       </div>
-      <div className="col-span-3 border">{children}</div>
+      <div className="border w-full overflow-y-auto">{children}</div>
     </div>
   );
 }

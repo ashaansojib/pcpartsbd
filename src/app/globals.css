@@ -104,7 +104,7 @@ img{
   @apply my-container grid lg:grid-cols-7 grid-cols-1 gap-4 justify-between items-center w-full md:p-0 p-2 lg:h-[84px]
 }
 .header-deals{
-  @apply md:col-span-4 md:flex justify-between items-center gap-4 hidden md:block
+  @apply md:col-span-4 md:flex justify-between items-center gap-4 hidden
 }
 .header-deal-container{
   @apply py-1 px-2 rounded bg-secondary flex justify-center md:justify-between items-center gap-2
@@ -113,10 +113,10 @@ img{
   @apply py-1 px-2 rounded bg-secondary flex justify-center md:justify-between items-center gap-2
 }
 .dashboard-menu{
-  @apply flex justify-between items-center hover:bg-secondary p-2 font-semibold text-primary
+  @apply flex justify-between items-center p-2 text-secondary
 }
 .dashboard-menu:hover .dash-icon{
-  @apply rotate-90 transform transition duration-300
+  @apply rotate-90 transform transition duration-300 ease-in-out
 }
 .submit-btn{
   @apply py-2 px-4 bg-primary uppercase text-white hover:border border-blue-500 border rounded-md hover:bg-secondary hover:text-primary transition duration-300 cursor-pointer
