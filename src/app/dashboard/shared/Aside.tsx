@@ -131,7 +131,7 @@ const Aside = () => {
         </svg>
       </Link>
       <span className="mt-1 text-xs">USERS</span>
-      <Link className="dashboard-menu" href="/dashboard">
+      <Link className="dashboard-menu" href="/dashboard/processing">
         <span className="flex gap-1 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +158,7 @@ const Aside = () => {
           />
         </svg>
       </Link>
-      <Link className="dashboard-menu" href="/dashboard/products">
+      <Link className="dashboard-menu" href="/dashboard/processing">
         <span className="flex gap-1 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +185,7 @@ const Aside = () => {
           />
         </svg>
       </Link>
-      <Link className="dashboard-menu" href="/dashboard/features">
+      <Link className="dashboard-menu" href="/dashboard/processing">
         Black Listed{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +202,7 @@ const Aside = () => {
           />
         </svg>
       </Link>
-      <Link className="dashboard-menu" href="/dashboard/navigation">
+      <Link className="dashboard-menu" href="/dashboard/processing">
         Product Lists{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +220,7 @@ const Aside = () => {
         </svg>
       </Link>
       <span className="mt-1 text-xs">ADMIN</span>
-      <Link className="dashboard-menu" href="/">
+      <Link className="dashboard-menu" href="/dashboard/processing">
         <span className="flex gap-1 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +251,7 @@ const Aside = () => {
           />
         </svg>
       </Link>
-      <Link className="dashboard-menu" href="/">
+      <Link className="dashboard-menu" href="/dashboard/processing">
         <span className="flex gap-1 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
